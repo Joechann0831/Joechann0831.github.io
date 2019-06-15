@@ -396,6 +396,23 @@
 
 
     
+        <section id="comments" style="margin: 2em; padding: 2em; background: rgba(255, 255, 255, 0.5)">
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '7f3e99916c1d5424dc51',
+      clientSecret: '6e607a07a49b706ee03f46f848112c65762f2f63',
+      repo: 'ZhenChengUSTC.github.io',
+      owner: 'ZhenChengUSTC',
+      admin: ['ZhenChengUSTC'],
+      id: window.location.pathname
+    })
+    gitalk.render('gitalk-container')
+  </script>
+</section>
+    
 
 
 
