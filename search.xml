@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images</title>
+      <title>EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images</title>
       <link href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/"/>
       <url>/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/</url>
       
-        <content type="html"><![CDATA[<p><img src="../imgs/20190616-1.png" alt="20190616-1"></p><p>这是18年CVPR计算成像板块的一篇poster文章，因为网络结构和19年CVPR做光场SR的很像，所以在这里先读一下这篇，看看二者到底有什么区别。值得一提的是，这篇文章的团队是LFCNN的团队。</p>]]></content>
+        <content type="html"><![CDATA[<p><img src="../imgs/20190616-1.png" alt="20190616-1"></p><a id="more"></a><p>这是18年CVPR计算成像板块的一篇poster文章，因为网络结构和19年CVPR做光场SR的很像，所以在这里先读一下这篇，看看二者到底有什么区别。值得一提的是，这篇文章的团队是LFCNN的团队。</p>]]></content>
       
       
       <categories>
