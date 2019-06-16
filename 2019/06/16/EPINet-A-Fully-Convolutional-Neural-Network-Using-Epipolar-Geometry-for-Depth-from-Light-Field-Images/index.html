@@ -15,16 +15,20 @@
 
 
 
-<meta name="description" content="Here is Zhen&apos;s personal blog.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zhen&#39;s blog">
-<meta property="og:url" content="http://ZhenChengUSTC.github.io/archives/2019/06/index.html">
+<meta name="description" content="这是18年CVPR计算成像板块的一篇poster文章，因为网络结构和19年CVPR做光场SR的很像，所以在这里先读一下这篇，看看二者到底有什么区别。值得一提的是，这篇文章的团队是LFCNN的团队。">
+<meta name="keywords" content="lightfield, depth estimation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images">
+<meta property="og:url" content="http://ZhenChengUSTC.github.io/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/index.html">
 <meta property="og:site_name" content="Zhen&#39;s blog">
-<meta property="og:description" content="Here is Zhen&apos;s personal blog.">
+<meta property="og:description" content="这是18年CVPR计算成像板块的一篇poster文章，因为网络结构和19年CVPR做光场SR的很像，所以在这里先读一下这篇，看看二者到底有什么区别。值得一提的是，这篇文章的团队是LFCNN的团队。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zhenchengustc.github.io/2019/06/16/imgs/20190616-1.png">
+<meta property="og:updated_time" content="2019-06-16T13:59:44.702Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhen&#39;s blog">
-<meta name="twitter:description" content="Here is Zhen&apos;s personal blog.">
+<meta name="twitter:title" content="EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images">
+<meta name="twitter:description" content="这是18年CVPR计算成像板块的一篇poster文章，因为网络结构和19年CVPR做光场SR的很像，所以在这里先读一下这篇，看看二者到底有什么区别。值得一提的是，这篇文章的团队是LFCNN的团队。">
+<meta name="twitter:image" content="http://zhenchengustc.github.io/2019/06/16/imgs/20190616-1.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -56,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2019/6 | Zhen&#39;s blog</title>
+<title>EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images | Zhen&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -66,8 +70,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -269,97 +273,186 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/" class="archive-article-date">
-      <time datetime="2019-06-16T13:53:47.000Z" itemprop="datePublished">06-16</time>
+    <div class="article-meta">
+      <a href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/" class="article-date">
+      <time datetime="2019-06-16T13:53:47.000Z" itemprop="datePublished">2019-06-16</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/light-field/">light field</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lightfield-depth-estimation/">lightfield, depth estimation</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+      </div>
+      
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/06/15/博客搭建日志/" class="archive-article-date">
-      <time datetime="2019-06-15T06:13:41.000Z" itemprop="datePublished">06-15</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/15/博客搭建日志/">博客搭建日志</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Techs/">Techs</a>
+        <p><img src="../imgs/20190616-1.png" alt="20190616-1"></p>
+<p>这是18年CVPR计算成像板块的一篇poster文章，因为网络结构和19年CVPR做光场SR的很像，所以在这里先读一下这篇，看看二者到底有什么区别。值得一提的是，这篇文章的团队是LFCNN的团队。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Zhen Cheng</a></p>
+        <p><span>发布时间:</span>2019-06-16, 21:53:47</p>
+        <p><span>最后更新:</span>2019-06-16, 21:59:44</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/" title="EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images">http://ZhenChengUSTC.github.io/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://ZhenChengUSTC.github.io/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/　　作者: Zhen Cheng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tech/">Tech</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/06/15/博客搭建日志/">
+                    博客搭建日志
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
 
     
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images　| Zhen's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
 
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments" style="margin: 2em; padding: 2em; background: rgba(255, 255, 255, 0.5)">
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '7f3e99916c1d5424dc51',
+      clientSecret: '6e607a07a49b706ee03f46f848112c65762f2f63',
+      repo: 'ZhenChengUSTC.github.io',
+      owner: 'ZhenChengUSTC',
+      admin: ['ZhenChengUSTC'],
+      id: 'Sun Jun 16 2019 21:53:47 GMT+0800'
+    })
+    gitalk.render('gitalk-container')
+  </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/06/15/博客搭建日志/" title="下一篇: 博客搭建日志">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/15/博客搭建日志/">博客搭建日志</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
