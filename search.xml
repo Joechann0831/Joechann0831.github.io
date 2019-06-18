@@ -8,12 +8,12 @@
       <link href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/"/>
       <url>/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/</url>
       
-        <content type="html"><![CDATA[<p><img src="../imgs/20190616-1.png" alt="20190616-1"></p><p>这是18年CVPR计算成像板块的一篇poster文章，因为网络结构和19年CVPR做光场SR的很像，所以在这里先读一下这篇，看看二者到底有什么区别。值得一提的是，这篇文章的团队是LFCNN的团队。</p><a id="more"></a>]]></content>
+        <content type="html"><![CDATA[<p><img src="../imgs/20190616-1.png" alt="20190616-1"></p><p>这是18年CVPR计算成像板块的一篇poster文章，因为网络结构和19年CVPR做光场SR的很像，所以在这里先读一下这篇，看看二者到底有什么区别。值得一提的是，这篇文章的团队是LFCNN的团队。</p><a id="more"></a><p>这篇文章的主要贡献有两个点：一个是网络结构，采用了一个multi-stream的网络结构，从不同的方向来获取EPI的信息，另一个就是它针对光场深度估计数据集太小做的一个数据增强，提出了一些light field specific的增强方法。</p><h2 id="Multi-stream网络结构"><a href="#Multi-stream网络结构" class="headerlink" title="Multi-stream网络结构"></a>Multi-stream网络结构</h2><p>网络结构图：</p><p><img src="../imgs/20190618-2.png" alt="20190616-1"></p><p>最理想的利用EPI的方法，当然是从EPI中辨别出各个方向的极线，然后计算其斜率得到视差和深度，例如15年PAMI的结构张量方法，但是这种方法是一种特征检测+优化的方法，不使用于深度学习，因此，简化一下，从四个整数正切值的方向获取SAI的stack，分成不同的stream送入网络，将得到的特征concat在一起，再用8个conv block预测最后的disparity map。</p><p><strong>（感觉看完这几篇文章得再总结一下别人是怎么利用高维数据信息的，例如高维的卷积、一些独特设计的卷积结构等，我总觉得这其中有可以挖掘的地方。）</strong></p><h2 id="针对光场深度估计的数据增强方法"><a href="#针对光场深度估计的数据增强方法" class="headerlink" title="针对光场深度估计的数据增强方法"></a>针对光场深度估计的数据增强方法</h2><p>文章提出了很多数据增强方法：变化central view、空间旋转、resize所有view、翻转所有view、色彩调整、直方图拉伸等等。针对空间旋转，不是简单地旋转空间维度就完事了，见下图：</p><p><img src="../imgs/20190618-3.png" alt="20190616-1"></p><p>在旋转90度之后，可以看到横方向的SAI之间的视差已经从原本的横方向变成了纵方向，所以应该要把它送进纵方向的网络里面去，而且label也要对应地旋转。</p><p>resize的话，也是要对视差的值进行数值上的resize的。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>针对这篇文章，去年我看的时候并不觉得其网络结构有什么特别特殊的，但是今年CVPR有人拿它来做SR，效果还贼好，这就很尴尬了。。。一点想法：</p><ol><li>这种方法确实能够利用2D的卷积来比较不错地获取不同角度维的信息，但有一个缺陷，那就是它只能用到0、45、90、135这四个方向上的view，其他位置的view无法在multi-stream中被利用到，因此，如何充分地将所有的view之间的关系（这里所述的关系应当指的是角度上的邻接关系和不同角度的view之间的空间关系）。但是不得不承认这种方式可以比较简单地利用到光场的角度维信息，尽管并不完全；</li><li>文章为了针对小的baseline，用的是$2\times2$的卷积核，其实很少见，但是文章没有比较其他的核大小，所以无法说明是否真的有效。</li></ol>]]></content>
       
       
       <categories>
           
-          <category> light field </category>
+          <category> Notes </category>
           
       </categories>
       
