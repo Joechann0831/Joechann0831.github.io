@@ -20,7 +20,9 @@
       
         <tags>
             
-            <tag> light field, super resolution </tag>
+            <tag> light field </tag>
+            
+            <tag> super resolution </tag>
             
         </tags>
       
@@ -45,7 +47,9 @@
       
         <tags>
             
-            <tag> lightfield, depth estimation </tag>
+            <tag> lightfield </tag>
+            
+            <tag> depth estimation </tag>
             
         </tags>
       
