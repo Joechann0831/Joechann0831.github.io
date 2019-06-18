@@ -15,17 +15,15 @@
 
 
 
-<meta name="description" content="Here is Zhen&apos;s personal blog.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="404">
-<meta property="og:url" content="http://Joechann0831.github.io/404/index.html">
+<meta name="keywords" content="light field, super resolution">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Residual Networks for Light Field Image Super-Resolution">
+<meta property="og:url" content="http://Joechann0831.github.io/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/index.html">
 <meta property="og:site_name" content="Zhen&#39;s blog">
-<meta property="og:description" content="Here is Zhen&apos;s personal blog.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-15T05:30:15.201Z">
+<meta property="og:updated_time" content="2019-06-18T13:20:40.083Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="404">
-<meta name="twitter:description" content="Here is Zhen&apos;s personal blog.">
+<meta name="twitter:title" content="Residual Networks for Light Field Image Super-Resolution">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +55,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>404 | Zhen&#39;s blog</title>
+<title>Residual Networks for Light Field Image Super-Resolution | Zhen&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -67,7 +65,7 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
         isCategory: false,
@@ -270,11 +268,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Residual-Networks-for-Light-Field-Image-Super-Resolution" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/404/index.html" class="article-date">
-      <time datetime="2019-06-15T05:30:15.000Z" itemprop="datePublished">2019-06-15</time>
+      <a href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/" class="article-date">
+      <time datetime="2019-06-18T13:19:41.000Z" itemprop="datePublished">2019-06-18</time>
 </a>
 
 
@@ -289,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      404
+      Residual Networks for Light Field Image Super-Resolution
     </h1>
   
 
@@ -297,8 +295,16 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Notes/">Notes</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/light-field-super-resolution/">light field, super resolution</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -306,36 +312,66 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta { display: none; }
-    #container .article .article-title { padding-right: 0; }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover { border-left: none; }
-    .article-title { font-size: 1.6em }
-    .article-entry hr { margin: 0;}
-    .article-meta,
-    #container .article-info-post.article-info { display: none;}
-    #container .article .article-title { padding: 0; }
-</style>
-
-
-          
-        
+        <a id="more"></a>
       
     </div>
     
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/">Residual Networks for Light Field Image Super-Resolution</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Zhen Cheng</a></p>
+        <p><span>发布时间:</span>2019-06-18, 21:19:41</p>
+        <p><span>最后更新:</span>2019-06-18, 21:20:40</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/" title="Residual Networks for Light Field Image Super-Resolution">http://Joechann0831.github.io/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Joechann0831.github.io/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/　　作者: Zhen Cheng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">
+                    EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images
+                </a>
+            </div>
+        
+    </nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
 
@@ -353,7 +389,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"404　| Zhen's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Residual Networks for Light Field Image Super-Resolution　| Zhen's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -378,13 +414,31 @@
       repo: 'Joechann0831.github.io',
       owner: 'Joechann0831',
       admin: ['Joechann0831'],
-      id: 'Sat Jun 15 2019 13:30:15 GMT+0800'
+      id: 'Tue Jun 18 2019 21:19:41 GMT+0800'
     })
     gitalk.render('gitalk-container')
   </script>
 </section>
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/" title="下一篇: EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/">Residual Networks for Light Field Image Super-Resolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/15/博客搭建日志/">博客搭建日志</a></li></ul>
 
 
 

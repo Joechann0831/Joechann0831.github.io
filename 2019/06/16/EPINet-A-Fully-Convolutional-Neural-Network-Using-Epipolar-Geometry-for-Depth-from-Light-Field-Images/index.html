@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://joechann0831.github.io/2019/06/16/imgs/20190616-1.png">
 <meta property="og:image" content="http://joechann0831.github.io/2019/06/16/imgs/20190618-2.png">
 <meta property="og:image" content="http://joechann0831.github.io/2019/06/16/imgs/20190618-3.png">
-<meta property="og:updated_time" content="2019-06-18T13:16:46.224Z">
+<meta property="og:updated_time" content="2019-06-18T13:23:54.651Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images">
 <meta name="twitter:description" content="这是18年CVPR计算成像板块的一篇poster文章，因为网络结构和19年CVPR做光场SR的很像，所以在这里先读一下这篇，看看二者到底有什么区别。值得一提的是，这篇文章的团队是LFCNN的团队。">
@@ -198,7 +198,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tech/">Tech</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lightfield-depth-estimation/">lightfield, depth estimation</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tech/">Tech</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/light-field-super-resolution/">light field, super resolution</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lightfield-depth-estimation/">lightfield, depth estimation</a></li></ul>
                     </div>
                 </section>
                 
@@ -325,11 +325,11 @@
 
 <p>这篇文章的主要贡献有两个点：一个是网络结构，采用了一个multi-stream的网络结构，从不同的方向来获取EPI的信息，另一个就是它针对光场深度估计数据集太小做的一个数据增强，提出了一些light field specific的增强方法。</p>
 <h2 id="Multi-stream网络结构"><a href="#Multi-stream网络结构" class="headerlink" title="Multi-stream网络结构"></a>Multi-stream网络结构</h2><p>网络结构图：</p>
-<p><img src="../imgs/20190618-2.png" alt="20190616-1"></p>
+<p><img src="../imgs/20190618-2.png" alt="20190616-2"></p>
 <p>最理想的利用EPI的方法，当然是从EPI中辨别出各个方向的极线，然后计算其斜率得到视差和深度，例如15年PAMI的结构张量方法，但是这种方法是一种特征检测+优化的方法，不使用于深度学习，因此，简化一下，从四个整数正切值的方向获取SAI的stack，分成不同的stream送入网络，将得到的特征concat在一起，再用8个conv block预测最后的disparity map。</p>
 <p><strong>（感觉看完这几篇文章得再总结一下别人是怎么利用高维数据信息的，例如高维的卷积、一些独特设计的卷积结构等，我总觉得这其中有可以挖掘的地方。）</strong></p>
 <h2 id="针对光场深度估计的数据增强方法"><a href="#针对光场深度估计的数据增强方法" class="headerlink" title="针对光场深度估计的数据增强方法"></a>针对光场深度估计的数据增强方法</h2><p>文章提出了很多数据增强方法：变化central view、空间旋转、resize所有view、翻转所有view、色彩调整、直方图拉伸等等。针对空间旋转，不是简单地旋转空间维度就完事了，见下图：</p>
-<p><img src="../imgs/20190618-3.png" alt="20190616-1"></p>
+<p><img src="../imgs/20190618-3.png" alt="20190616-3"></p>
 <p>在旋转90度之后，可以看到横方向的SAI之间的视差已经从原本的横方向变成了纵方向，所以应该要把它送进纵方向的网络里面去，而且label也要对应地旋转。</p>
 <p>resize的话，也是要对视差的值进行数值上的resize的。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>针对这篇文章，去年我看的时候并不觉得其网络结构有什么特别特殊的，但是今年CVPR有人拿它来做SR，效果还贼好，这就很尴尬了。。。一点想法：</p>
@@ -348,7 +348,7 @@
         <p><span>本文标题:</span><a href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Zhen Cheng</a></p>
         <p><span>发布时间:</span>2019-06-16, 21:53:47</p>
-        <p><span>最后更新:</span>2019-06-18, 21:16:46</p>
+        <p><span>最后更新:</span>2019-06-18, 21:23:54</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/" title="EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images">http://Joechann0831.github.io/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Joechann0831.github.io/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/　　作者: Zhen Cheng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -362,6 +362,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/">
+                    Residual Networks for Light Field Image Super-Resolution
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -451,7 +457,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/" title="上一篇: Residual Networks for Light Field Image Super-Resolution">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -463,7 +471,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/15/博客搭建日志/">博客搭建日志</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/">Residual Networks for Light Field Image Super-Resolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/15/博客搭建日志/">博客搭建日志</a></li></ul>
 
 
 
