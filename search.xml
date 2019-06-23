@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution</title>
+      <link href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/"/>
+      <url>/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/1.png" alt="1"></p><p>这是19年CVPR NTIRE Workshop上的文章，也是做光场超分辨率的，而且还是第一次见到用生成对抗的loss来做光场的SR，应该挺有意思的。</p><a id="more"></a><p>看完之后，先讲讲优点吧。首先我觉得处理的问题是比较有创新性的，在给定非常少的view的情况下，能够同时做角度和空间的恢复，用到了3D的基于GAN的AE，见下图：</p><p><img src="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/2.png" alt="2"></p><p>输入是三个图中红色或者绿色框标记的view，经过一个3D的encoder得到一个$3\times 3\times 3$的latent表达，再经过9个2D的decoder，出来九个通道的角度SR结果，然后再经过两个(for 4x)或者一个(for 2x)空间超分辨率的网络，做到角度和空间上的超分辨率，最后用一个DiffWGAN的discriminator做判别器。</p><p>但是这里我有几个小疑问：</p><ol><li>为什么不用3D的encoder-decoder直接出来结果，而要用这种方式？节约解码端的计算资源？</li><li>最后为什么要用GAN？众所周知，GAN的discriminator是倾向于视觉质量的，目前光场的SR还没有到需要研究视觉质量的地步，即使这个判别器可能是为了判别输出的光场是否像真实的光场（不仅空间上很好，而且维持了很好的角度一致性），空间和角度一致性无法解耦也会导致空间恢复结果往perceptual靠拢。所以我觉得用GAN不是个特别好的主意，文章中说的是为了增强重建的光场的sharpness，引入了WGAN loss用来惩罚GT和estimation的角度和空间的导数之间的差，为什么不用MSE loss呢？用导数的MSE loss不也可以吗？</li></ol><p>文章的encoder-decoder的设计是参照他们之前在CVPR18里面发表的Light field intrinsics with a deep encoder-decoder network的文章，网络中设计了一些encoder res-block和decoder res-block，主要形式如下：</p><p><img src="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/3.png" alt="3"></p><p>为啥要用Bicubic interpolation呢。。。这个的反传很复杂，而且好像还挺慢的，为啥不用bilinear？</p><p>最后的实验结果和14年PAMI、Bilinear、GB、SRGAN都比较了，但是这个比较看着挺混乱的，不晓得它到底在看重哪个指标，速度、accuracy、visual quality，总得有那么一两个吧？貌似挺混乱的。</p><p>不过这篇文章里面提到他们HCI实验室又做了一个新的数据集，大概就是之前说到的光场合成数据集，用于大型的深度学习任务的，目前有750个光场数据，之前他们在CVPR18提的那个数据集好像才将近200个。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Notes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> light field </tag>
+            
+            <tag> super resolution </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Residual Networks for Light Field Image Super-Resolution</title>
       <link href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/"/>
       <url>/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/</url>

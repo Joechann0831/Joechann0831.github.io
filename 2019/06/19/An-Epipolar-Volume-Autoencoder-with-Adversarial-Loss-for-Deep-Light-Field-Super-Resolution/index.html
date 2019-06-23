@@ -15,16 +15,22 @@
 
 
 
-<meta name="description" content="Here is Zhen&apos;s personal blog.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zhen&#39;s blog">
-<meta property="og:url" content="http://Joechann0831.github.io/archives/2019/06/index.html">
+<meta name="description" content="这是19年CVPR NTIRE Workshop上的文章，也是做光场超分辨率的，而且还是第一次见到用生成对抗的loss来做光场的SR，应该挺有意思的。">
+<meta name="keywords" content="light field,super resolution">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution">
+<meta property="og:url" content="http://Joechann0831.github.io/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/index.html">
 <meta property="og:site_name" content="Zhen&#39;s blog">
-<meta property="og:description" content="Here is Zhen&apos;s personal blog.">
+<meta property="og:description" content="这是19年CVPR NTIRE Workshop上的文章，也是做光场超分辨率的，而且还是第一次见到用生成对抗的loss来做光场的SR，应该挺有意思的。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://joechann0831.github.io/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/1.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/2.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/3.png">
+<meta property="og:updated_time" content="2019-06-23T07:30:05.038Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhen&#39;s blog">
-<meta name="twitter:description" content="Here is Zhen&apos;s personal blog.">
+<meta name="twitter:title" content="An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution">
+<meta name="twitter:description" content="这是19年CVPR NTIRE Workshop上的文章，也是做光场超分辨率的，而且还是第一次见到用生成对抗的loss来做光场的SR，应该挺有意思的。">
+<meta name="twitter:image" content="http://joechann0831.github.io/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/1.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -56,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2019/6 | Zhen&#39;s blog</title>
+<title>An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution | Zhen&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -66,8 +72,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -269,171 +275,201 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/" class="archive-article-date">
-      <time datetime="2019-06-19T12:58:28.000Z" itemprop="datePublished">06-19</time>
+    <div class="article-meta">
+      <a href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/" class="article-date">
+      <time datetime="2019-06-19T12:58:28.000Z" itemprop="datePublished">2019-06-19</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/">An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/Notes/">Notes</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/light-field/">light field</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/super-resolution/">super resolution</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><img src="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/1.png" alt="1"></p>
+<p>这是19年CVPR NTIRE Workshop上的文章，也是做光场超分辨率的，而且还是第一次见到用生成对抗的loss来做光场的SR，应该挺有意思的。</p>
+<a id="more"></a>
+
+<p>看完之后，先讲讲优点吧。首先我觉得处理的问题是比较有创新性的，在给定非常少的view的情况下，能够同时做角度和空间的恢复，用到了3D的基于GAN的AE，见下图：</p>
+<p><img src="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/2.png" alt="2"></p>
+<p>输入是三个图中红色或者绿色框标记的view，经过一个3D的encoder得到一个$3\times 3\times 3$的latent表达，再经过9个2D的decoder，出来九个通道的角度SR结果，然后再经过两个(for 4x)或者一个(for 2x)空间超分辨率的网络，做到角度和空间上的超分辨率，最后用一个DiffWGAN的discriminator做判别器。</p>
+<p>但是这里我有几个小疑问：</p>
+<ol>
+<li>为什么不用3D的encoder-decoder直接出来结果，而要用这种方式？节约解码端的计算资源？</li>
+<li>最后为什么要用GAN？众所周知，GAN的discriminator是倾向于视觉质量的，目前光场的SR还没有到需要研究视觉质量的地步，即使这个判别器可能是为了判别输出的光场是否像真实的光场（不仅空间上很好，而且维持了很好的角度一致性），空间和角度一致性无法解耦也会导致空间恢复结果往perceptual靠拢。所以我觉得用GAN不是个特别好的主意，文章中说的是为了增强重建的光场的sharpness，引入了WGAN loss用来惩罚GT和estimation的角度和空间的导数之间的差，为什么不用MSE loss呢？用导数的MSE loss不也可以吗？</li>
+</ol>
+<p>文章的encoder-decoder的设计是参照他们之前在CVPR18里面发表的Light field intrinsics with a deep encoder-decoder network的文章，网络中设计了一些encoder res-block和decoder res-block，主要形式如下：</p>
+<p><img src="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/3.png" alt="3"></p>
+<p>为啥要用Bicubic interpolation呢。。。这个的反传很复杂，而且好像还挺慢的，为啥不用bilinear？</p>
+<p>最后的实验结果和14年PAMI、Bilinear、GB、SRGAN都比较了，但是这个比较看着挺混乱的，不晓得它到底在看重哪个指标，速度、accuracy、visual quality，总得有那么一两个吧？貌似挺混乱的。</p>
+<p>不过这篇文章里面提到他们HCI实验室又做了一个新的数据集，大概就是之前说到的光场合成数据集，用于大型的深度学习任务的，目前有750个光场数据，之前他们在CVPR18提的那个数据集好像才将近200个。</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/">An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Zhen Cheng</a></p>
+        <p><span>发布时间:</span>2019-06-19, 20:58:28</p>
+        <p><span>最后更新:</span>2019-06-23, 15:30:05</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/" title="An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution">http://Joechann0831.github.io/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Joechann0831.github.io/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/　　作者: Zhen Cheng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/">
+                    Residual Networks for Light Field Image Super-Resolution
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/" class="archive-article-date">
-      <time datetime="2019-06-18T13:19:41.000Z" itemprop="datePublished">06-18</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/">Residual Networks for Light Field Image Super-Resolution</a>
-    </h1>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution　| Zhen's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Notes/">Notes</a>
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments" style="margin: 2em; padding: 2em; background: rgba(255, 255, 255, 0.5)">
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '185312dab9e8351756b5',
+      clientSecret: '93c807c1c7089a98ca29a343f4d2991e7b517f23',
+      repo: 'Joechann0831.github.io',
+      owner: 'Joechann0831',
+      admin: ['Joechann0831'],
+      id: 'Wed Jun 19 2019 20:58:28 GMT+0800'
+    })
+    gitalk.render('gitalk-container')
+  </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/" title="下一篇: Residual Networks for Light Field Image Super-Resolution">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
 
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/light-field/">light field</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/super-resolution/">super resolution</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/" class="archive-article-date">
-      <time datetime="2019-06-16T13:53:47.000Z" itemprop="datePublished">06-16</time>
-</a>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/">An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/">Residual Networks for Light Field Image Super-Resolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/15/博客搭建日志/">博客搭建日志</a></li></ul>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Notes/">Notes</a>
-    </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/depth-estimation/">depth estimation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/light-field/">light field</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/06/15/博客搭建日志/" class="archive-article-date">
-      <time datetime="2019-06-15T06:13:41.000Z" itemprop="datePublished">06-15</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/15/博客搭建日志/">博客搭建日志</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Techs/">Techs</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tech/">Tech</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
