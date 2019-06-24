@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Light field intrinsics with a deep encoder-decoder network</title>
+      <link href="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/"/>
+      <url>/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/1.png" alt="1"></p><p>这是承接上一篇文章读的，<a href="http://Joechann0831.github.io/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/">上一篇文章</a>是CVPRW19的利用3D的encoder-decoder加上GAN loss做SR的工作，它的结构其实比较奇怪，最后加上GAN loss的操作也有点莫名其妙，这篇CVPR18正会的文章就好多了。</p><a id="more"></a><h3 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h3><p>文章的主要思想其实靠一张图就能看明白了，这也是我之前一直没有读这篇文章的原因，觉得看完图就懂了:</p><p><img src="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/Framework.png" alt="Framework"></p><p>EPI volume通过一个encoder编码到非常低维的空间，然后通过无监督方式训练AE得到表达、通过有监督的训练方式来得到disparity和intrinsic的两个分量。</p><p>一些小细节：</p><ol><li>输入是水平和垂直两个方向的EPI volume，共享网络参数，在disparity encoder之前concat在一起；</li><li>由于diffuse和specular相加是要等于LF的，所以在最后接近输出层时把二者的feature共享了；</li></ol><h3 id="Residual-block的设计"><a href="#Residual-block的设计" class="headerlink" title="Residual block的设计"></a>Residual block的设计</h3><p>文章还提出了它设计的encoder-decoder的res-block，与CVPRW19的是一样的结构，只不过deconv那里没有bicubic上采样这么神奇的操作而已：</p><p><img src="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/Res-block.png" alt="Res-block"></p><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>总的来说，CVPRW19的文章结构上是沿袭了这篇18年的思想，只不过为什么用3D-2D这样的结构代替3D-3D的结构还是有点奇怪，如果单纯是为了结构上比较精简，倒也可以理解了。那么还有两个不太理解的地方就是，为什么要用GAN的loss，如果改用MSE loss比较PSNR和SSIM是否会更合理一些？</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Notes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> light field </tag>
+            
+            <tag> depth estimation </tag>
+            
+            <tag> intrinsic decomposition </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution</title>
       <link href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/"/>
       <url>/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/</url>
