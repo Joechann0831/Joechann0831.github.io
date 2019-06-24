@@ -25,7 +25,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://joechann0831.github.io/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/1.png">
 <meta property="og:image" content="http://joechann0831.github.io/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/Architecture.png">
-<meta property="og:updated_time" content="2019-06-24T14:24:26.573Z">
+<meta property="og:image" content="http://joechann0831.github.io/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/TimeVaryingLoss.png">
+<meta property="og:updated_time" content="2019-06-24T14:32:55.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Burst Denoising with Kernel Prediction Networks">
 <meta name="twitter:description" content="这是18年CVPR利用KPN做burst去噪的文章，作者列表里赫然出现了Ren Ng大佬，有、东西～">
@@ -332,7 +333,9 @@
 <p>文章用的是一种encoder-decoder的结构模式，输出是一个$K^2N$个通道的feature，feature大小与input的burst一样大，然后它们被reshape成每个pixel上都有N个$K\times K$大小的线性filter，输出需要经过如下的运算：<br>$$<br>\hat{Y}^{p}=\frac{1}{N} \sum_{i=1}^{N}\left\langle f_{i}^{p}, V^{p}\left(X_{i}\right)\right\rangle<br>$$<br>其中$\hat Y ^p$指的是p点上的输出值，$f_i^p$是指第i张image上p点对应的$K\times K$的kernel，$V^p(X_i)$是第i张image上p点的$K\times K$的邻域，所以生成的kernel实际上是per-pixel的卷积核。</p>
 <h3 id="Loss上的改动"><a href="#Loss上的改动" class="headerlink" title="Loss上的改动"></a>Loss上的改动</h3><p>文章提出的loss是L2距离和梯度的L1距离（basic loss），但是实验观察到直接优化这个loss的话，网络会比较快地收敛到局部最优，具体体现的现象就是只有reference帧的filter是非0的。</p>
 <p>作者提出主要的原因是multi-image的alignment和denoising是比单张的更难的，basic loss只会激励训练去考虑参考帧而不考虑其他帧的影响，所以才会导致网络快速收敛到局部最优。</p>
-<p>鉴于此，文章提出退火loss：<br>$$<br>\mathcal{L}\left(X ; Y^{<em>}, t\right)=\ell\left(\frac{1}{N} \sum_{i=1}^{N} f_{i}\left(X_{i}\right), Y^{</em>}\right)+\beta \alpha^{t} \sum_{i=1}^{N} \ell\left(f_{i}\left(X_{i}\right), Y^{*}\right)<br>$$<br>其中$\beta$是一个超参，$0&lt;\alpha&lt;1$也是个超参，t则是代表iteration的次数，当$\beta \alpha^t \gg 1$时，第二项占据主导地位，说明网络在尝试把每一帧都独立地对齐到参考帧，作为使用basic loss的一种预训练，当t越来越大时，$\beta \alpha^t$趋近于0，从而前一个basic loss占据主导，网络学习着重新给出filter，使得对齐更好的帧可以对结果产生更好的影响，而对齐更差的帧的影响则被削弱。</p>
+<p>鉴于此，文章提出退火loss：</p>
+<p><img src="/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/TimeVaryingLoss.png" alt="TimeVaryingLoss"></p>
+<p>其中$\beta$是一个超参，$0&lt;\alpha&lt;1$也是个超参，t则是代表iteration的次数，当$\beta \alpha^t \gg 1$时，第二项占据主导地位，说明网络在尝试把每一帧都独立地对齐到参考帧，作为使用basic loss的一种预训练，当t越来越大时，$\beta \alpha^t​$趋近于0，从而前一个basic loss占据主导，网络学习着重新给出filter，使得对齐更好的帧可以对结果产生更好的影响，而对齐更差的帧的影响则被削弱。</p>
 <p>个人感觉，本质上退火loss采用的思想是在优化的前期让网络去优化独立的align，使得各个帧能够具备初步的align能力，然后再使用basic loss去fusion和优化，这种思想和我们CSVT的EnhanceCNN想法是比较一致的，不同的就是我们是完全分开做的，他们则是更加巧妙地使用了退火loss把两步并做了一步。</p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ol>
 <li>网络输入上，文章所提的网络除了输入burst，还将逐点估计的噪声水平（利用设定的相机参数$\sigma_s$和$\sigma_r$估计出来的）作为一个额外的channel输入进来了，这是一个比较有意思的想法：将成像过程中的参数或者与参数相关的东西作为额外的输入，往往有可能会有更好的效果；</li>
@@ -350,7 +353,7 @@
         <p><span>本文标题:</span><a href="/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/">Burst Denoising with Kernel Prediction Networks</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Zhen Cheng</a></p>
         <p><span>发布时间:</span>2019-06-24, 16:05:59</p>
-        <p><span>最后更新:</span>2019-06-24, 22:24:26</p>
+        <p><span>最后更新:</span>2019-06-24, 22:32:55</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/" title="Burst Denoising with Kernel Prediction Networks">http://Joechann0831.github.io/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Joechann0831.github.io/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/　　作者: Zhen Cheng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
