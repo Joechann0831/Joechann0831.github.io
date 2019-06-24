@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Burst Denoising with Kernel Prediction Networks</title>
+      <link href="/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/"/>
+      <url>/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/1.png" alt="1"></p><p>这是18年CVPR利用KPN做burst去噪的文章，作者列表里赫然出现了Ren Ng大佬，有、东西～</p><a id="more"></a><h3 id="主要问题"><a href="#主要问题" class="headerlink" title="主要问题"></a>主要问题</h3><p>在去噪领域，多张图像的去噪往往可以利用求平均的方式，但是在使用手持相机的连拍图像里，涉及到相机motion或者场景motion的时候，直接求平均会带来很大的blur效果，去噪效果很差。文章提出使用空间可变的kernel来对齐各个图像并且做去噪，同时还提出了使用退火loss函数的方法。</p><p>拍照过程中的噪声分为两种，一个是shot noise，可以用Poisson过程来模拟，另一个是read noise，相机将raw data读取的时候的噪声，用一个高斯过程来模拟：<br>$$<br>x_{p} \sim \mathcal{N}\left(y_{p}, \sigma_{r}^{2}+\sigma_{s} y_{p}\right)<br>$$<br>其中$x_p$是带噪声的像素值，$y_p$是真实的intensity，对每张image，只要sensor gain是一致的，$\sigma _s$和$\sigma _r$就是确定的。真实图像连拍往往包括手抖动的motion和场景motion，这些都会影响去噪算法的处理。</p><p>burst denoising问题的定义：使用所有的图像对reference图像进行denoise。</p><h3 id="合成数据集"><a href="#合成数据集" class="headerlink" title="合成数据集"></a>合成数据集</h3><p>文章提出，为图像恢复任务收集真实数据集是个很有挑战性的事情，因为算法效果会受限于imaging system的能力，恢复出来的效果不会超过使用的imaging system。因此，文章使用openimage这个数据集提供的高清单帧图像，自行设计了模拟连拍的数据集生成方式（具体参见论文），并且在相机的参数曲线中随机挑选参数用于生成训练集，最后通过公式(1)来生成带噪声的连拍图像。</p><p><strong>可以看出这里的噪声图像和我们平常理解的加性、乘性噪声都不太一样</strong></p><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>OK，接下来就是我读这篇文章想要get的最重要的点：网络结构的设计。</p><p><img src="/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/Architecture.png" alt="Architecture"></p><p>文章用的是一种encoder-decoder的结构模式，输出是一个$K^2N$个通道的feature，feature大小与input的burst一样大，然后它们被reshape成每个pixel上都有N个$K\times K$大小的线性filter，输出需要经过如下的运算：<br>$$<br>\hat{Y}^{p}=\frac{1}{N} \sum_{i=1}^{N}\left\langle f_{i}^{p}, V^{p}\left(X_{i}\right)\right\rangle<br>$$<br>其中$\hat Y ^p$指的是p点上的输出值，$f_i^p$是指第i张image上p点对应的$K\times K$的kernel，$V^p(X_i)$是第i张image上p点的$K\times K$的邻域，所以生成的kernel实际上是per-pixel的卷积核。</p><h3 id="Loss上的改动"><a href="#Loss上的改动" class="headerlink" title="Loss上的改动"></a>Loss上的改动</h3><p>文章提出的loss是L2距离和梯度的L1距离（basic loss），但是实验观察到直接优化这个loss的话，网络会比较快地收敛到局部最优，具体体现的现象就是只有reference帧的filter是非0的。</p><p>作者提出主要的原因是multi-image的alignment和denoising是比单张的更难的，basic loss只会激励训练去考虑参考帧而不考虑其他帧的影响，所以才会导致网络快速收敛到局部最优。</p><p><strong>这里可以联系到我们的工作，有可能也是这个原因～</strong></p><p>鉴于此，文章提出退火loss：<br>$$<br>\mathcal{L}\left(X ; Y^{<em>}, t\right)=\ell\left(\frac{1}{N} \sum_{i=1}^{N} f_{i}\left(X_{i}\right), Y^{</em>}\right)+\beta \alpha^{t} \sum_{i=1}^{N} \ell\left(f_{i}\left(X_{i}\right), Y^{*}\right)<br>$$<br>其中$\beta$是一个超参，$0&lt;\alpha&lt;1$也是个超参，t则是代表iteration的次数，当$\beta \alpha^t \gg 1$时，第二项占据主导地位，说明网络在尝试把每一帧都独立地对齐到参考帧，作为使用basic loss的一种预训练，当t越来越大时，$\beta \alpha^t$趋近于0，从而前一个basic loss占据主导，网络学习着重新给出filter，使得对齐更好的帧可以对结果产生更好的影响，而对齐更差的帧的影响则被削弱。</p><p>个人感觉，本质上退火loss采用的思想是在优化的前期让网络去优化独立的align，使得各个帧能够具备初步的align能力，然后再使用basic loss去fusion和优化，这种思想和我们CSVT的EnhanceCNN想法是比较一致的，不同的就是我们是完全分开做的，他们则是更加巧妙地使用了退火loss把两步并做了一步。</p><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ol><li>网络输入上，文章所提的网络除了输入burst，还将逐点估计的噪声水平（利用设定的相机参数$\sigma_s$和$\sigma_r$估计出来的）作为一个额外的channel输入进来了，这是一个比较有意思的想法：将成像过程中的参数或者与参数相关的东西作为额外的输入，往往有可能会有更好的效果；</li><li>网络结构上，通过生成per-pixel的卷积核，网络对align+去噪这一过程的模拟能力会更加优秀，因为得到的是一个滤波器组，会提供spatial-variant以及input-variant的kernel，这个input-variant不仅仅指输入的burst，还有输入的参数，这个很重要，会使得网络具备对不同条件下成像的burst的鲁棒性，文章的实验也证明了这一点；</li><li>退火loss的设计很巧妙，将我们正常思维中需要分步做的东西一步做到了，而且在local minimum的时候的分析也非常准确，是非常值得学习和借鉴的。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Notes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> denoising </tag>
+            
+            <tag> kernel prediction networks </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Light field intrinsics with a deep encoder-decoder network</title>
       <link href="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/"/>
       <url>/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/</url>
