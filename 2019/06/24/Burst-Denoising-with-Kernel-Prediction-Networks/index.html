@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://joechann0831.github.io/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/1.png">
 <meta property="og:image" content="http://joechann0831.github.io/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/Architecture.png">
 <meta property="og:image" content="http://joechann0831.github.io/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/TimeVaryingLoss.png">
-<meta property="og:updated_time" content="2019-06-24T14:32:55.934Z">
+<meta property="og:updated_time" content="2019-06-25T12:05:57.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Burst Denoising with Kernel Prediction Networks">
 <meta name="twitter:description" content="这是18年CVPR利用KPN做burst去噪的文章，作者列表里赫然出现了Ren Ng大佬，有、东西～">
@@ -198,7 +198,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tech/">Tech</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/denoising/">denoising</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/depth-estimation/">depth estimation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/intrinsic-decomposition/">intrinsic decomposition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel-prediction-networks/">kernel prediction networks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/light-field/">light field</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/super-resolution/">super resolution</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tech/">Tech</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/denoising/">denoising</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/depth-estimation/">depth estimation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/intrinsic-decomposition/">intrinsic decomposition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel-prediction-networks/">kernel prediction networks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/light-field/">light field</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/real-world-SISR/">real-world SISR</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/super-resolution/">super resolution</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video-frame-interpolation/">video frame interpolation</a></li></ul>
                     </div>
                 </section>
                 
@@ -340,7 +340,9 @@
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ol>
 <li>网络输入上，文章所提的网络除了输入burst，还将逐点估计的噪声水平（利用设定的相机参数$\sigma_s$和$\sigma_r$估计出来的）作为一个额外的channel输入进来了，这是一个比较有意思的想法：将成像过程中的参数或者与参数相关的东西作为额外的输入，往往有可能会有更好的效果；</li>
 <li>网络结构上，通过生成per-pixel的卷积核，网络对align+去噪这一过程的模拟能力会更加优秀，因为得到的是一个滤波器组，会提供spatial-variant以及input-variant的kernel，这个input-variant不仅仅指输入的burst，还有输入的参数，这个很重要，会使得网络具备对不同条件下成像的burst的鲁棒性，文章的实验也证明了这一点；</li>
-<li>退火loss的设计很巧妙，将我们正常思维中需要分步做的东西一步做到了，而且在local minimum的时候的分析也非常准确，是非常值得学习和借鉴的。</li>
+<li>退火loss的设计很巧妙，将我们正常思维中需要分步做的东西一步做到了，而且在local minimum的时候的分析也非常准确，是非常值得学习和借鉴的；</li>
+<li>在这篇文章里，burst的不同位置的噪声和motion都是不一致、不均匀的，因此这就应和了KPN的优势：当要处理的input各个区域的降质或者变形不是一致的时候，可以用这种per-pixel的kernel来做，而且这里的kernel还是根据输入图像生成出来的，具有input variant的特性；</li>
+<li>处理这种局部的形变的话，deformable conv也很有效，这两者的区别在哪里呢？是个值得深思的问题。</li>
 </ol>
 
       
@@ -353,7 +355,7 @@
         <p><span>本文标题:</span><a href="/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/">Burst Denoising with Kernel Prediction Networks</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Zhen Cheng</a></p>
         <p><span>发布时间:</span>2019-06-24, 16:05:59</p>
-        <p><span>最后更新:</span>2019-06-24, 22:32:55</p>
+        <p><span>最后更新:</span>2019-06-25, 20:05:57</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/" title="Burst Denoising with Kernel Prediction Networks">http://Joechann0831.github.io/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Joechann0831.github.io/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/　　作者: Zhen Cheng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -367,6 +369,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/06/25/Toward-Real-World-Single-Image-Super-Resolution-A-New-Benchmark-and-A-New-Model/">
+                    Toward Real-World Single Image Super-Resolution: A New Benchmark and A New Model
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -456,7 +464,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2019/06/25/Toward-Real-World-Single-Image-Super-Resolution-A-New-Benchmark-and-A-New-Model/" title="上一篇: Toward Real-World Single Image Super-Resolution: A New Benchmark and A New Model">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -468,7 +478,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/">Burst Denoising with Kernel Prediction Networks</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/">Light field intrinsics with a deep encoder-decoder network</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/">An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/">Residual Networks for Light Field Image Super-Resolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/15/博客搭建日志/">博客搭建日志</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/Deep-Video-Super-Resolution-Network-Using-Dynamic-Upsampling-Filters-Without-Explicit-Motion-Compensation/">Deep Video Super-Resolution Network Using Dynamic Upsampling Filters Without Explicit Motion Compensation</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/25/Video-Frame-Interpolation-via-Adaptive-Separable-Convolution/">Video Frame Interpolation via Adaptive Separable Convolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/25/Video-Frame-Interpolation-via-Adaptive-Convolution/">Video Frame Interpolation via Adaptive Convolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/25/Toward-Real-World-Single-Image-Super-Resolution-A-New-Benchmark-and-A-New-Model/">Toward Real-World Single Image Super-Resolution: A New Benchmark and A New Model</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/">Burst Denoising with Kernel Prediction Networks</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/">Light field intrinsics with a deep encoder-decoder network</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/">An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/">Residual Networks for Light Field Image Super-Resolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/15/博客搭建日志/">博客搭建日志</a></li></ul>
 
 
 
