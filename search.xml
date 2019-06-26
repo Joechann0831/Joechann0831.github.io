@@ -8,9 +8,25 @@
       <link href="/2019/06/26/Deep-Video-Super-Resolution-Network-Using-Dynamic-Upsampling-Filters-Without-Explicit-Motion-Compensation/"/>
       <url>/2019/06/26/Deep-Video-Super-Resolution-Network-Using-Dynamic-Upsampling-Filters-Without-Explicit-Motion-Compensation/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p><img src="/2019/06/26/Deep-Video-Super-Resolution-Network-Using-Dynamic-Upsampling-Filters-Without-Explicit-Motion-Compensation/title.png" alt="title"></p><p>这篇文章是利用KPN来做视频超分辨率的，是CVPR18的文章。</p><a id="more"></a><h3 id="网络框架"><a href="#网络框架" class="headerlink" title="网络框架"></a>网络框架</h3><p>文章提出的dynamic upsampling filters其实和KPN是基本一样的思路，不过文章说参考文献参考的是16年NIPS的dynamic filter networks，不晓得这俩有啥区别，从算法上看是几乎没什么差别的。文章提出的算法是这样的，用dynamic upsampling filters生成filter，代替deconv等操作对input frame做upsample，然后用另一个网络对所有输入帧提取特征之后求一个residual，增强SR之后的input frame的细节。</p><h4 id="Dynamic-upsampling-filters"><a href="#Dynamic-upsampling-filters" class="headerlink" title="Dynamic upsampling filters"></a>Dynamic upsampling filters</h4><p><img src="/2019/06/26/Deep-Video-Super-Resolution-Network-Using-Dynamic-Upsampling-Filters-Without-Explicit-Motion-Compensation/1.png" alt="1"></p><p>将所有输入帧送进dynamic filter generation network生成卷积核，这个卷积核数量是$r^2HW$个，也就是SR之后的图像的pixel数量，亦即每个output的pixel都对应着一个kernel，然后对LR的input frame，每个pixel上都有对应的$r^2$个kernel，用于卷积并且生成HR上对应位置的pixel。</p><h4 id="整体网络"><a href="#整体网络" class="headerlink" title="整体网络"></a>整体网络</h4><p><img src="/2019/06/26/Deep-Video-Super-Resolution-Network-Using-Dynamic-Upsampling-Filters-Without-Explicit-Motion-Compensation/2.png" alt="2"></p><p>整体网络框架如上图，两个重要的网络是共享参数的，只在后续生成想要的东西的时候进行另外的卷积，相当于是提取feature部分共享，后面分支出来了。</p><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>文章的算法上，是用所有帧生成kernel来对input的LR进行卷积得到一个HR的初步结果，然后用所有帧生成细节来进一步恢复。这里和之前的KPN不一样的地方在于，之前的KPN会对每一个使用到的帧都采用学习到的kernel，造成了非常大的计算资源消耗，这里只用learn到的kernel去学一个初始化的结果，然后用其他的帧来学习细节。</p><p>尽管这样做会更轻量级一点，但是不同帧之间互补的细节信息正是通过对齐和fusion得到的，这里直接通过一个全卷积网络得到细节信息，我觉得还有点不够完美，这里学习到的kernel只用在了input center frame上，所谓的隐式的motion compensation压根就看不出来，也许是太隐式了？因为文章后面花了不少的篇幅去证明他们对temporal信息的利用能力，所以暂且认为它非常非常隐式地利用到了时域的variant特性，但是学习残差这一块直接怼进网络里去实在有点不好理解。</p>]]></content>
       
       
+      <categories>
+          
+          <category> Notes </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> super resolution </tag>
+            
+            <tag> video </tag>
+            
+            <tag> dynamic filter network </tag>
+            
+        </tags>
       
     </entry>
     
