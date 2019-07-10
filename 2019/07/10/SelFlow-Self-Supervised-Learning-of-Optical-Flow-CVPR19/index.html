@@ -23,12 +23,19 @@
 <meta property="og:site_name" content="Zhen&#39;s blog">
 <meta property="og:description" content="这是CVPR19 paper reading精读任务中的第一篇，Oral Presentation, Best Paper Final List, Top 1%，反正很屌就对了，其实是从他们团队之前AAAI19的一篇文章进化而来的，为了精读这篇CVPR，我读了他们的AAAI19,顺便再go deep读了关于知识蒸馏(knowledge distillation)的两篇稍微古老一点的paper。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/joechan/ReadingNotes/Webpage/ZhenChengUSTC.github.io/source/_posts/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/title.png">
-<meta property="og:updated_time" content="2019-07-10T10:04:09.417Z">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/title.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/NIPS14-1.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/NIPS14-2.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/NIPS14-3.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/NIPS14-4.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/KDD06-1.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/KDD06-2.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/KDD06-3.png">
+<meta property="og:updated_time" content="2019-07-10T14:33:54.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SelFlow: Self-Supervised Learning of Optical Flow-CVPR19">
 <meta name="twitter:description" content="这是CVPR19 paper reading精读任务中的第一篇，Oral Presentation, Best Paper Final List, Top 1%，反正很屌就对了，其实是从他们团队之前AAAI19的一篇文章进化而来的，为了精读这篇CVPR，我读了他们的AAAI19,顺便再go deep读了关于知识蒸馏(knowledge distillation)的两篇稍微古老一点的paper。">
-<meta name="twitter:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/joechan/ReadingNotes/Webpage/ZhenChengUSTC.github.io/source/_posts/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/title.png">
+<meta name="twitter:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/title.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -317,7 +324,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/joechan/ReadingNotes/Webpage/ZhenChengUSTC.github.io/source/_posts/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/title.png" alt="title"></p>
+        <p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/title.png" alt="title"></p>
 <p>这是CVPR19 paper reading精读任务中的第一篇，Oral Presentation, Best Paper Final List, Top 1%，反正很屌就对了，其实是从他们团队之前AAAI19的一篇文章进化而来的，为了精读这篇CVPR，我读了他们的AAAI19,顺便再go deep读了关于知识蒸馏(knowledge distillation)的两篇稍微古老一点的paper。</p>
 <a id="more"></a>
 
@@ -325,7 +332,50 @@
 <p>小的mimic model并不是用original的label来训练出来的，而是被训练用于学习大model学习到的函数，说起来有点绕，其实就是大model学习original label，小model学习大model，相当于大的model是小的model的老师，因此这种方式又被称为teacher-student modeling。模型压缩证明了一个问题，那就是小model无法直接学习到的东西，可以通过大model来学习，然后指导小model进行学习，往往会达到和大的model近似、比直接用original label更好的效果。</p>
 <p>换言之，复杂的模型学习到的函数，并没有想像中那么复杂，以至于简单模型无法学习。</p>
 <h3 id="深度网络-vs-浅层网络"><a href="#深度网络-vs-浅层网络" class="headerlink" title="深度网络 vs. 浅层网络"></a>深度网络 vs. 浅层网络</h3><p>NIPS14这篇文章的核心观点在于，现有的很多研究都证明了，深层网络能够比浅层网络达到更高的准确率，那么这个准确率增益得益于深层网络的什么特征呢？是更多的参数，深层网络的层次化结构，还是现有的优化算法和正则更适用于深层网络呢？文章通过实验证明了，浅层的网络可以学习到深层网络能够学到的一样复杂的函数，并且获得近似的accuracy，从而说明了浅层网络相比于深层网络的问题并不在与capacity和表征能力，而是在于训练和正则的方法。</p>
-<p>文章的做法是这样的，在语音分类数据集TIMIT和图像分类数据集CIFAR-10上，</p>
+<p>文章的做法是这样的，在语音分类数据集TIMIT和图像分类数据集CIFAR-10上，用深度网络训练一个高准确率的分类器，使用正常的softmax分类输出$p_k = e^{z_{k}}/\sum_j e^{z_j}$和cross-entropy损失函数。</p>
+<p>在此之后，就是训练浅层网络了，浅层的mimic model训练的时候使用的不是softmax而是logits，也就是深层网络的输出在送入softmax之前的内容$z_k​$，这种方式的好处在于两点：</p>
+<ol>
+<li><p>如果使用概率值也就是softmax的输出，那么如果teacher输出$[2\times 10^{-9}, 4\times 10^{-5},0.9999]​$，那么student模型在学习的时候会忽略前两项，因为它们太小了，但实际上如果关注logits的话，可以看到[10,20,30]，其实差别不大，说明这个input还是对前两类有一定的倾向性的，student学习这种label，会更利于学习teacher模型的表征；</p>
+</li>
+<li><p>（<a href="https://www.zhihu.com/question/50519680/answer/136363665" target="_blank" rel="noopener">取自Wang Naiyang的回答</a>）</p>
+<p><code>传统的分类问题，模型的目标是将输入的特征映射到输出空间给定的某些点中的一个，换言之，就是要将所有的输入图像映射到输出空间的N个点上，例如在著名的Imagenet比赛中，就是要将所有可能的输入图片映射到输出空间的1000个点上。这么做的话这1000个点中的每一个点是一个one hot编码的类别信息。这样一个label能提供的监督信息只有log(class)这么多bit。然而在KD中，我们可以使用teacher model对于每个样本输出一个连续的label分布，这样可以利用的监督信息就远比one hot的多了。另外一个角度的理解，大家可以想象如果只有label这样的一个目标的话，那么这个模型的目标就是把训练样本中每一类的样本强制映射到同一个点上，这样其实对于训练很有帮助的类内variance和类间distance就损失掉了。然而使用teacher model的输出可以恢复出这方面的信息。具体的举例就像是paper中讲的， 猫和狗的距离比猫和桌子要近，同时如果一个动物确实长得像猫又像狗，那么它是可以给两类都提供监督。综上所述，KD的核心思想在于”打散”原来压缩到了一个点的监督信息，让student模型的输出尽量match teacher模型的输出分布。其实要达到这个目标其实不一定使用teacher model，在数据标注或者采集的时候本身保留的不确定信息也可以帮助模型的训练。</code></p>
+</li>
+</ol>
+<p>小结一下就是，将原本hard的分类label变成soft的话，能够提供样本更加丰富的特征信息，有助于model去理解样本的更深入的、更加独特的特征，也就是所谓的类内difference。</p>
+<p>可以看一下在TIMIT上的实验结果的对比，TIMIT上的实验是用将original label直接遗弃替换成teacher model给的label做的，后面的CIFAR-10则是引入了额外的unlabeled data：</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/NIPS14-1.png" alt="NIPS14-1"></p>
+<p>可以看出，使用了teacher model的label做训练的时候，会比使用hard label训练的准确率更高，这就证明了teacher model的有效性，如果在训练的时候，保留一定的不确定信息（这个往往人类是很难给出的），会更有助于训练。</p>
+<p>小结：</p>
+<p>shallow model如果想要达到好的效果，肯定要变得wide，但同时，就会带来优化上的难度和overfit的风险，可以从下图看出，当参数量变大的时候，使用hard的label会导致效果下降。</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/NIPS14-2.png" alt="NIPS14-2"></p>
+<h3 id="Mimic-model可以防止过拟合"><a href="#Mimic-model可以防止过拟合" class="headerlink" title="Mimic model可以防止过拟合"></a>Mimic model可以防止过拟合</h3><p>teacher-student模型给训练的target一个soft的label，实质上是给出了一个从input直接（通过深层模型）得到的target，增加了label赋予样本的信息量，放宽了output的空间，相当于某种形式的正则化，因此从下图可以看出，过拟合被有效地防止了：</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/NIPS14-3.png" alt="NIPS14-3"></p>
+<p>另外，从下图可以看出，浅层模型并不像13年Big neural networks waste capacity说的那样，表达能力不行，它与深层模型相比，是训练和正则化的算法限制了它的performance：</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/NIPS14-4.png" alt="NIPS14-4"></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>浅层模型在并行计算大行其道的当下，是一种适用于商业产品的好模型，但是它的各种问题也很显然，那就是在参数量大的时候难以训练，因为矩阵乘法的维度太高，往往得不到好的结果。本文证明了在使用模型压缩技术，也就是teacher-student模型的情况下，能够将浅层模型训练得很好，只要给一个足够准确的老师或者足够多的unlabeled data。这项发现在实际应用中是很有前途的。</p>
+<h1 id="SIGKDD06-Model-Compression"><a href="#SIGKDD06-Model-Compression" class="headerlink" title="SIGKDD06: Model Compression"></a>SIGKDD06: Model Compression</h1><p>既然NIPS14的这篇文章是基于model compression，后面要读的那篇Hinton老爷子的文章，也就是最早提出知识蒸馏的文章，也是基于这篇KDD的，那就先把这篇文章读一下吧，逐本溯源嘛。</p>
+<h3 id="Model-compression"><a href="#Model-compression" class="headerlink" title="Model compression"></a>Model compression</h3><p>所谓的model compression，主要是考虑到了一个问题，基本上最好的有监督学习模型都是很多基础模型的ensemble，ensemble的方法多种多样， 比如bagging, boosting, random forests等等，但是它们带来高准确率的同时也带来了巨大的计算和内存消耗，如果能够“压缩”模型，使得模型在不怎么损失准确率的情况下能够降低计算和内存消耗，岂不美哉？</p>
+<p>文章提出的方案：ensemble网络是用一个相对而言不太大的有label数据集训练得到的，而我们希望用一个单一更加轻量的ANN（那时候deep learning还不怎么火热呢）来得到接近的效果，那么用大量的无label数据送入训练好的ensemble网络，用它来生成伪label，然后让ANN去学习这个伪label，进而达到接近ensemble的效果。</p>
+<p>为什么可以这样做?我个人认为，主要是简单的ANN要么太简单，表达能力不够，要么就是表达能力够但是没有合适的训练或者监督来使它学好，因此一个teacher模型就显得至关重要了，<strong>复杂网络学习到的表征，不一定是简单网络无法学习的</strong>，这也是NIPS14的观点之一。</p>
+<p>优势：</p>
+<ol>
+<li>能够用轻量级的网络去得到高准确率的模型，减少了开销；</li>
+<li>由于大量的无label数据的引入，训练出来的网络能够有效地防止overfit；</li>
+</ol>
+<h3 id="数据生成"><a href="#数据生成" class="headerlink" title="数据生成"></a>数据生成</h3><p>从上面的分析可以看出，model compression的重点在于两个，一个是好的ensemble网络，一个是大量没有label的数据，前者提供一个好的label生成模型，后者则提供大量的训练数据。文章提到，某些域的数据是很好获取的，例如text、web、image等，但是有些域的数据可能并不一定好获取，它们的不同属性数据可能比较难从真实数据中获取，那么文章就提出了一个非参数的生成合成数据的方法MUNGE，也提出了两个含参的生成方法RANDOM和NBE，RANDOM是从各个拟合的边缘分布中采样，NBE则是用朴素贝叶斯估计来估计联合分布，而MUNGE作为一个非参方法，是用最近邻样本属性交换或者重采样的方法获取样本的，具体方法就不再赘述。</p>
+<p>给出三个结果图就可以看出这篇文章思路的价值所在了：</p>
+<p>第一个是RMSE和训练数据的关系，有label的训练数据只有4k，所以横坐标从4k开始：</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/KDD06-1.png" alt="KDD06-1"></p>
+<p>从上述结果可以看出MUNGE是三个生成方法中最好的，而且通过这种model compression的方式，确实能够达到用轻量级模型去接近ensemble模型效果的目的。</p>
+<p>第二个是轻量级模型的hidden units个数和RMSE的关系，表现了当轻量级网络的参数量增多时，用model compression方法能够得到越来越好的效果。</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/KDD06-2.png" alt="KDD06-2"></p>
+<p>第三个则是表现数据合成方法的，表明数据合成还是不如真实的unlabeled data（废话）：</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/KDD06-3.png" alt="KDD06-3"></p>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><p>这篇文章可以说很有意思，它针对当时ensemble大行其道的情况做了一个很有远见的思考，那就是，ensemble固然可以增强效果，但是却给模型带来了大量的复杂度，导致模型的开销太大，但使用轻量级的网络又训练不出那么好的效果，要么是数据量不够，要么是表达能力不够，咋整呢？Model compression就一定程度上解决了这个问题。</p>
+<p>这个方案也引领我反思了一下目前的SISR方法，大多数的网络方法都喜欢学习完之后用个ensemble，如果SISR需要好的效果同时也需要低开销的话，用一用model compression也就是后来的知识蒸馏，未尝不是个好的方案。</p>
+<p>同时呢，文章也向我们展示了一个问题，那就是，轻量级的网络并不是表达能力不够，而是没有用足够的数据和合适的方案去调教它，14年这篇文章提到一个观点，放在这里也适用，<strong>那就是正常的label都是人工标注的，和数据是没有一个显式的直接的函数关系的，而从复杂模型输出的伪label是从一个显式的函数输出出来的，轻量级的网络尽管是轻量的，但是它也能够更好地学习这种拥有显示输入输出关系的函数</strong>。我们以前都认为轻量级网络学不到东西是它太weak，然而实际上不是小兵底子差，而是长官没教好hhhhh</p>
+<p>另外，NIPS14在此文上的改进就是，将单纯地用高准确率模型生成的伪label替换成了分类网络的logits，放松了label的形式，增大了不确定度，对输入的表达反而增强了，提供了更多的信息，soft的label使得浅层的网络也能够很好地表征input的特征了。</p>
+<h1 id="NIPS15-Distilling-the-Knowledge-in-a-Neural-Network"><a href="#NIPS15-Distilling-the-Knowledge-in-a-Neural-Network" class="headerlink" title="NIPS15: Distilling the Knowledge in a Neural Network"></a>NIPS15: Distilling the Knowledge in a Neural Network</h1><p>这篇文章是三巨头之一的Geoffrey Hinton写的，和NIPS14的思路很像，NIPS14是借助模型压缩来研究深层网络和浅层网络之间的差别，这一篇则是研究怎样用一个单一的模型来达到ensemble多个复杂模型得到的效果。可以说这两篇文章都是启发自KDD06的模型压缩方法，而且这篇NIPS15更是task都和KDD06很接近。</p>
 
       
     </div>
@@ -337,7 +387,7 @@
         <p><span>本文标题:</span><a href="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/">SelFlow: Self-Supervised Learning of Optical Flow-CVPR19</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Zhen Cheng</a></p>
         <p><span>发布时间:</span>2019-07-10, 17:42:50</p>
-        <p><span>最后更新:</span>2019-07-10, 18:04:09</p>
+        <p><span>最后更新:</span>2019-07-10, 22:33:54</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/" title="SelFlow: Self-Supervised Learning of Optical Flow-CVPR19">http://Joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/　　作者: Zhen Cheng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -367,7 +417,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NIPS14-Do-Deep-Nets-Really-Need-to-be-Deep"><span class="toc-number">1.</span> <span class="toc-text">NIPS14: Do Deep Nets Really Need to be Deep?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型压缩"><span class="toc-number">1.0.1.</span> <span class="toc-text">模型压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深度网络-vs-浅层网络"><span class="toc-number">1.0.2.</span> <span class="toc-text">深度网络 vs. 浅层网络</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NIPS14-Do-Deep-Nets-Really-Need-to-be-Deep"><span class="toc-number">1.</span> <span class="toc-text">NIPS14: Do Deep Nets Really Need to be Deep?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型压缩"><span class="toc-number">1.0.1.</span> <span class="toc-text">模型压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深度网络-vs-浅层网络"><span class="toc-number">1.0.2.</span> <span class="toc-text">深度网络 vs. 浅层网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mimic-model可以防止过拟合"><span class="toc-number">1.0.3.</span> <span class="toc-text">Mimic model可以防止过拟合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.0.4.</span> <span class="toc-text">小结</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#SIGKDD06-Model-Compression"><span class="toc-number">2.</span> <span class="toc-text">SIGKDD06: Model Compression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-compression"><span class="toc-number">2.0.1.</span> <span class="toc-text">Model compression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据生成"><span class="toc-number">2.0.2.</span> <span class="toc-text">数据生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NIPS15-Distilling-the-Knowledge-in-a-Neural-Network"><span class="toc-number">3.</span> <span class="toc-text">NIPS15: Distilling the Knowledge in a Neural Network</span></a></li>
         
     </div>
     <style>
