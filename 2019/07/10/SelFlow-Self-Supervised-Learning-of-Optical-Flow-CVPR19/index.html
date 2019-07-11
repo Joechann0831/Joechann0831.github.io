@@ -15,13 +15,13 @@
 
 
 
-<meta name="description" content="这是CVPR19 paper reading精读任务中的第一篇，Oral Presentation, Best Paper Final List, Top 1%，反正很屌就对了，其实是从他们团队之前AAAI19的一篇文章进化而来的，为了精读这篇CVPR，我读了他们的AAAI19,顺便再go deep读了关于知识蒸馏(knowledge distillation)的两篇稍微古老一点的paper。">
+<meta name="description" content="这是CVPR19 paper reading精读任务中的第一篇，Oral Presentation, Best Paper Final List, Top 1%，反正很屌就对了，其实是从他们团队之前AAAI19的一篇文章进化而来的，为了精读这篇CVPR，我读了他们的AAAI19,顺便再go deep读了关于知识蒸馏(knowledge distillation)的三篇稍微古老一点的paper。">
 <meta name="keywords" content="optical flow,data distillation,self-supervision">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SelFlow: Self-Supervised Learning of Optical Flow-CVPR19">
 <meta property="og:url" content="http://Joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/index.html">
 <meta property="og:site_name" content="Zhen&#39;s blog">
-<meta property="og:description" content="这是CVPR19 paper reading精读任务中的第一篇，Oral Presentation, Best Paper Final List, Top 1%，反正很屌就对了，其实是从他们团队之前AAAI19的一篇文章进化而来的，为了精读这篇CVPR，我读了他们的AAAI19,顺便再go deep读了关于知识蒸馏(knowledge distillation)的两篇稍微古老一点的paper。">
+<meta property="og:description" content="这是CVPR19 paper reading精读任务中的第一篇，Oral Presentation, Best Paper Final List, Top 1%，反正很屌就对了，其实是从他们团队之前AAAI19的一篇文章进化而来的，为了精读这篇CVPR，我读了他们的AAAI19,顺便再go deep读了关于知识蒸馏(knowledge distillation)的三篇稍微古老一点的paper。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/title.png">
 <meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/NIPS14-1.png">
@@ -31,10 +31,16 @@
 <meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/KDD06-1.png">
 <meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/KDD06-2.png">
 <meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/KDD06-3.png">
-<meta property="og:updated_time" content="2019-07-10T14:39:02.902Z">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/AAAI19-1.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/AAAI19-2.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/CVPR19-1.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/CVPR18-architecture.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/CVPR1922.png">
+<meta property="og:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/CVPR19-3.png">
+<meta property="og:updated_time" content="2019-07-11T14:40:17.622Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SelFlow: Self-Supervised Learning of Optical Flow-CVPR19">
-<meta name="twitter:description" content="这是CVPR19 paper reading精读任务中的第一篇，Oral Presentation, Best Paper Final List, Top 1%，反正很屌就对了，其实是从他们团队之前AAAI19的一篇文章进化而来的，为了精读这篇CVPR，我读了他们的AAAI19,顺便再go deep读了关于知识蒸馏(knowledge distillation)的两篇稍微古老一点的paper。">
+<meta name="twitter:description" content="这是CVPR19 paper reading精读任务中的第一篇，Oral Presentation, Best Paper Final List, Top 1%，反正很屌就对了，其实是从他们团队之前AAAI19的一篇文章进化而来的，为了精读这篇CVPR，我读了他们的AAAI19,顺便再go deep读了关于知识蒸馏(knowledge distillation)的三篇稍微古老一点的paper。">
 <meta name="twitter:image" content="http://joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/title.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -325,7 +331,7 @@
       
           
         <p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/title.png" alt="title"></p>
-<p>这是CVPR19 paper reading精读任务中的第一篇，Oral Presentation, Best Paper Final List, Top 1%，反正很屌就对了，其实是从他们团队之前AAAI19的一篇文章进化而来的，为了精读这篇CVPR，我读了他们的AAAI19,顺便再go deep读了关于知识蒸馏(knowledge distillation)的两篇稍微古老一点的paper。</p>
+<p>这是CVPR19 paper reading精读任务中的第一篇，Oral Presentation, Best Paper Final List, Top 1%，反正很屌就对了，其实是从他们团队之前AAAI19的一篇文章进化而来的，为了精读这篇CVPR，我读了他们的AAAI19,顺便再go deep读了关于知识蒸馏(knowledge distillation)的三篇稍微古老一点的paper。</p>
 <a id="more"></a>
 
 <h2 id="NIPS14-Do-Deep-Nets-Really-Need-to-be-Deep"><a href="#NIPS14-Do-Deep-Nets-Really-Need-to-be-Deep" class="headerlink" title="NIPS14: Do Deep Nets Really Need to be Deep?"></a>NIPS14: Do Deep Nets Really Need to be Deep?</h2><h3 id="模型压缩"><a href="#模型压缩" class="headerlink" title="模型压缩"></a>模型压缩</h3><p>知识蒸馏的学术源头大家都说来自于这篇文章，其实更早的源头是06年SIGKDD的Model Compression，模型压缩的核心思想是用有label的数据来训练一个大而且准确的model，然后用没有label的数据经过这个model生成score作为数据的伪label，即合成label，然后用这些label去指导小的mimic model来学习。</p>
@@ -353,7 +359,8 @@
 <p>另外，从下图可以看出，浅层模型并不像13年Big neural networks waste capacity说的那样，表达能力不行，它与深层模型相比，是训练和正则化的算法限制了它的performance：</p>
 <p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/NIPS14-4.png" alt="NIPS14-4"></p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>浅层模型在并行计算大行其道的当下，是一种适用于商业产品的好模型，但是它的各种问题也很显然，那就是在参数量大的时候难以训练，因为矩阵乘法的维度太高，往往得不到好的结果。本文证明了在使用模型压缩技术，也就是teacher-student模型的情况下，能够将浅层模型训练得很好，只要给一个足够准确的老师或者足够多的unlabeled data。这项发现在实际应用中是很有前途的。</p>
-<h2 id="SIGKDD06-Model-Compression"><a href="#SIGKDD06-Model-Compression" class="headerlink" title="SIGKDD06: Model Compression"></a>SIGKDD06: Model Compression</h2><p>既然NIPS14的这篇文章是基于model compression，后面要读的那篇Hinton老爷子的文章，也就是最早提出知识蒸馏的文章，也是基于这篇KDD的，那就先把这篇文章读一下吧，逐本溯源嘛。</p>
+<p>同时也给我们提供了一个关于软标签的好处：能够表达类内相异性和类间的相似性。</p>
+<h2 id="SIGKDD06-Model-Compression"><a href="#SIGKDD06-Model-Compression" class="headerlink" title="SIGKDD06: Model Compression"></a>SIGKDD06: Model Compression</h2><p>既然NIPS14的这篇文章是基于model compression，后面要读的那篇Hinton老爷子的文章，也就是最早提出知识蒸馏的文章，也是基于这篇KDD的，那就先把这篇文章读一下吧，逐本溯源嘛，而且这篇文章的二作Rich Caruana正是NIPS14的二作。</p>
 <h3 id="Model-compression"><a href="#Model-compression" class="headerlink" title="Model compression"></a>Model compression</h3><p>所谓的model compression，主要是考虑到了一个问题，基本上最好的有监督学习模型都是很多基础模型的ensemble，ensemble的方法多种多样， 比如bagging, boosting, random forests等等，但是它们带来高准确率的同时也带来了巨大的计算和内存消耗，如果能够“压缩”模型，使得模型在不怎么损失准确率的情况下能够降低计算和内存消耗，岂不美哉？</p>
 <p>文章提出的方案：ensemble网络是用一个相对而言不太大的有label数据集训练得到的，而我们希望用一个单一更加轻量的ANN（那时候deep learning还不怎么火热呢）来得到接近的效果，那么用大量的无label数据送入训练好的ensemble网络，用它来生成伪label，然后让ANN去学习这个伪label，进而达到接近ensemble的效果。</p>
 <p>为什么可以这样做?我个人认为，主要是简单的ANN要么太简单，表达能力不够，要么就是表达能力够但是没有合适的训练或者监督来使它学好，因此一个teacher模型就显得至关重要了，<strong>复杂网络学习到的表征，不一定是简单网络无法学习的</strong>，这也是NIPS14的观点之一。</p>
@@ -375,7 +382,54 @@
 <p>这个方案也引领我反思了一下目前的SISR方法，大多数的网络方法都喜欢学习完之后用个ensemble，如果SISR需要好的效果同时也需要低开销的话，用一用model compression也就是后来的知识蒸馏，未尝不是个好的方案。</p>
 <p>同时呢，文章也向我们展示了一个问题，那就是，轻量级的网络并不是表达能力不够，而是没有用足够的数据和合适的方案去调教它，14年这篇文章提到一个观点，放在这里也适用，<strong>那就是正常的label都是人工标注的，和数据是没有一个显式的直接的函数关系的，而从复杂模型输出的伪label是从一个显式的函数输出出来的，轻量级的网络尽管是轻量的，但是它也能够更好地学习这种拥有显示输入输出关系的函数</strong>。我们以前都认为轻量级网络学不到东西是它太weak，然而实际上不是小兵底子差，而是长官没教好hhhhh</p>
 <p>另外，NIPS14在此文上的改进就是，将单纯地用高准确率模型生成的伪label替换成了分类网络的logits，放松了label的形式，增大了不确定度，对输入的表达反而增强了，提供了更多的信息，soft的label使得浅层的网络也能够很好地表征input的特征了。</p>
-<h2 id="NIPS15-Distilling-the-Knowledge-in-a-Neural-Network"><a href="#NIPS15-Distilling-the-Knowledge-in-a-Neural-Network" class="headerlink" title="NIPS15: Distilling the Knowledge in a Neural Network"></a>NIPS15: Distilling the Knowledge in a Neural Network</h2><p>这篇文章是三巨头之一的Geoffrey Hinton写的，和NIPS14的思路很像，NIPS14是借助模型压缩来研究深层网络和浅层网络之间的差别，这一篇则是研究怎样用一个单一的模型来达到ensemble多个复杂模型得到的效果。可以说这两篇文章都是启发自KDD06的模型压缩方法，而且这篇NIPS15更是task都和KDD06很接近。</p>
+<h2 id="NIPS15-Distilling-the-Knowledge-in-a-Neural-Network"><a href="#NIPS15-Distilling-the-Knowledge-in-a-Neural-Network" class="headerlink" title="NIPS15: Distilling the Knowledge in a Neural Network"></a>NIPS15: Distilling the Knowledge in a Neural Network</h2><p>这篇文章是三巨头之一的Geoffrey Hinton写的，和NIPS14的思路很像，NIPS14是借助模型压缩来研究深层网络和浅层网络之间的差别，这一篇则是研究怎样用一个单一的模型来达到ensemble多个复杂模型得到的效果。NIPS14使用logits来提供类内相异性和类间相似性，而这篇文章则提出了更general的“蒸馏”方法。</p>
+<h3 id="Knowledge-distilling"><a href="#Knowledge-distilling" class="headerlink" title="Knowledge distilling"></a>Knowledge distilling</h3><p>文章提出的知识蒸馏的方法其实就是之前的model compression，不知道为啥被他解释成了知识蒸馏之后大家就都开始用这个词，知识蒸馏听起来确实很高大上，但是太花里胡哨了点。。。</p>
+<p>OK讲正题，文章提出用带温度$T$的分类概率值来代替NIPS14用的logits以及KDD06用的分类器输出，并提出这种方式的soft label能够提供更好的蒸馏效果。同时它也提出发现在训练student model的时候加入一项hard label的loss会更有帮助。文章证明了优化带温度的分类概率在T很大的时候，等效于matching logits：<br>$$<br>q_i = \frac{exp(z_i/T)}{\sum_j exp(z_j/T)}<br>$$<br>如果teacher model的logits是$v_i$，则优化上述情况下的loss就等效于：<br>$$<br>\frac{\partial C}{\partial z_i}=\frac{1}{T}(q_i-p_i)=\frac{1}{T}(\frac{e^{z_i/T}}{\sum <em>j e^{z_j/T}}-\frac{e^{v_i/T}}{\sum _j e^{v_j/T}})<br>$$<br>进而当T足够大时，可以近似得到：<br>$$<br>\frac{\partial C}{\partial z</em>{i}} \approx \frac{1}{N T^{2}}\left(z_{i}-v_{i}\right)<br>$$<br>也就是说T足够大时，是等效于NIPS14的做法的。</p>
+<p>因此所谓的蒸馏，相比于之前的做法提出的新东西主要是两点：</p>
+<ol>
+<li>将softmax或者logits改为soften softmax，加入了温度参数来控制，提供一个可控的软化输出；</li>
+<li>将true label加入loss会更利于<strong>小的model</strong>的学习。</li>
+</ol>
+<p><strong><em>遗憾的是文章似乎并没有和NIPS14以及KDD06的蒸馏方法做比较，没法看出它的优越性。从理论上说，当然是一个可控的软输出比较适合，这样相当于在控制软label的能力，能够比较适配于不同的student model，使这种蒸馏方法更加灵活，但是效果呢？</em></strong></p>
+<h3 id="MNIST上的实验"><a href="#MNIST上的实验" class="headerlink" title="MNIST上的实验"></a>MNIST上的实验</h3><p>这篇文章有个很有意思的实验，那就是在训练student模型的时候，去掉了3这个label对应的data，但是训练出来的网络仍然能够比较好地分类出3的图片。这个就有点像老师看过学过3,而学生没有，于是老师来教他的感觉，这里充分体现了所谓的teacher-student model的一点意思了。</p>
+<h3 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h3><p>说实话这篇文章不知道咋回事读起来挺难受的，我感觉是因为作者喜欢把简单的东西说得贼复杂，而且一句话写得老长，阅读体验不是很好。不过文章的想法是很有价值的，对于ensemble的网络，test阶段太耗费资源，因此使用知识蒸馏的方式来训练一个蒸馏网络，利用软label，能够让小模型学习到ensemble这种大模型能够学到的准确率。但是我觉得文章有个小问题就是，明明他们提出的软label是在NIPS14和KDD06的方法基础上做了个小修改，却不跟别人的方案做比较，只讨论相似性，其实有点奇怪的。不过NIPS14和KDD06倒是都没有明确地讨论软label带来的好处，这也算是这篇文章的一个贡献点了。</p>
+<p>另外有一点我没记录的就是，对于大型的网络，训练ensemble可能都比较麻烦，因此文章还提出了一个使用specialist model和generalist model结合的方式，具体方法没有细看，就不看了。</p>
+<h2 id="AAAI-19-DDFlow-Learning-Optical-Flow-with-Unlabeled-Data-Distillation"><a href="#AAAI-19-DDFlow-Learning-Optical-Flow-with-Unlabeled-Data-Distillation" class="headerlink" title="AAAI 19: DDFlow: Learning Optical Flow with Unlabeled Data Distillation"></a>AAAI 19: DDFlow: Learning Optical Flow with Unlabeled Data Distillation</h2><h3 id="基于数据蒸馏的光流估计"><a href="#基于数据蒸馏的光流估计" class="headerlink" title="基于数据蒸馏的光流估计"></a>基于数据蒸馏的光流估计</h3><p>这篇文章是用所谓的数据蒸馏的方法来从没有光流label的视频数据中学习光流的，其核心思想就是从teacher网络中得到置信度比较高的预测值，用来作为student网络的标签，当然单纯这样做是没有什么意义的，文章提出的做法是，用teacher网络去学习非遮挡区域的光流，然后通过crop patch来让原本不遮挡的点强行被遮挡（移到了patch外头），从而用teacher网络学习到的光流来监督遮挡区域的学习，大致流程图如下：</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/AAAI19-1.png" alt="AAAI19-1"></p>
+<p><strong><em>在遮挡区域，所谓的亮度一致性不再成立，因此很难得到遮挡区域的较为准确的光流估计，这种自学习的方式利用模拟遮挡的方式，能够让student模型比较好地学习到对遮挡情况的处理，但是成也模拟败也模拟，这种遮挡的建模方式理论上会非常适用于图像边界附近被遮挡的pixel（被移出去了），然后一定程度上适用于图像内的遮挡（因为random crop会cover很多类型的遮挡），但是任意位置的遮挡仍然还是一个不太好处理的问题。</em></strong></p>
+<p>网络的大体框图如下图所示：</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/AAAI19-2.png" alt="AAAI19-2"></p>
+<p>可以看到，首先teacher模型学习forward和backward的光流，然后通过两个光流的一致性检测（对应位置光流互为相反数）来获得occlusion map，然后warp之后的image和source image在non-occlusion区域计算一致性的loss，然后对于student模型，它学习crop之后的video的光流，同样得到occlusion map，然后与teacher模型得到的occlusion map进行比较，得到在大patch中没遮挡但在合成数据中有遮挡的点的位置的mask，用来计算“occlusion”区域的loss。</p>
+<p><strong><em>其实我对这里也有一点疑问，teacher模型和student模型得到的O肯定是有误差的，这样估计到的mask也不一定代表了“occlusion”区域，不过在光流逐渐接近真实光流的情况下，这种假设也不是不成立的，只能说。。。蛮奇怪的。。。另外还有一点，文章的loss函数里面，无论是non-occlusion区域的photometric loss还是occlusion区域的occlusion loss，都用到了由光流生成的1bit的map（O以及M），那反传的时候是否考虑了这两个东西呢？还是说压根就不考虑？那就有点奇怪了吧。。。</em></strong></p>
+<h3 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h3><p>上一段的疑问可以通过训练过程多少回答一点，训练过程是这样的，分三步进行：</p>
+<ol>
+<li>不考虑遮挡，直接训练teacher模型；</li>
+<li>加上occlusion map，用$L_p$（photometric loss）训练teacher模型；</li>
+<li>给teacher模型加$L_p$，给student模型用teacher模型做初始化，加loss为$L_p+L_o$，一起训练这两个模型；</li>
+</ol>
+<p>从上述训练过程可以看出，teacher模型是经过预训练的，然后第三步，student模型是和teacher模型的初始化一样的，这就一定程度上保证了O和M的有效性。</p>
+<h3 id="小结-3"><a href="#小结-3" class="headerlink" title="小结"></a>小结</h3><p>这篇文章的思路很有意思，传统的光流估计方法，是用一些优化的能量函数来正则输出的光流，费时而且准确度低，而学习的方法呢，如果是有监督的，那么就会带来数据量不够的问题，而且合成的数据很难迁移到真实数据集，如果是无监督的，那么使用的loss对occlusion很难处理，文章的着力点就在于模拟了一个occlusion，然后通过teacher-student模型把occlusion下的情况学习了出来，使得student模型具备了对occlusion的handle能力，从而使得输出的光流在occlusion区域能够表现良好。</p>
+<p>当然文章也有一点问题，首先是前面提到的O和M的反传问题，另一方面则是random crop模拟的occlusion是很有限的，复杂的occlusion它也模拟不出来，任意位置的它也没办法模拟。这种random crop模拟的实际上是矩形或者类似矩形的occlusion，如果能用支持任意形状的模型，比如super-pixel，应该就能够使模拟的效果更好了。</p>
+<h2 id="CVPR19-SelFlow-Self-Supervised-Learning-of-Optical-Flow"><a href="#CVPR19-SelFlow-Self-Supervised-Learning-of-Optical-Flow" class="headerlink" title="CVPR19: SelFlow: Self-Supervised Learning of Optical Flow"></a>CVPR19: SelFlow: Self-Supervised Learning of Optical Flow</h2><p>那么终于到了这篇正主儿了，这篇文章是AAAI19同一批作者，他们在提出使用random crop来模拟occlusion之后，意识到random crop是算法的限制所在，它只能够模拟边界上或者是物体就消失在图像中了的情况，但是如果物体还在图像里面，只不过是被其他东西遮住了，亦即图像中任意位置任意形状的occlusion，就比较难模拟了。</p>
+<h3 id="Self-supervision-NOC-to-OCC"><a href="#Self-supervision-NOC-to-OCC" class="headerlink" title="Self supervision: NOC to OCC"></a>Self supervision: NOC to OCC</h3><p>鉴于此，文章提出使用super-pixel来模拟occlusion关系，具体做法见下图：</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/CVPR19-1.png" alt="CVPR19-1"></p>
+<p>文章首先训练一个非occlusion区域的NOC网络，使用常用的photometric loss，然后在将target帧进行superpixel分割之后，随机对其中几个superpixel注入随机噪声，举例而言，$I_t$中$p_1$对应在$I_{t+1}$中的$p_1^{‘}$，在注入噪声之后，$I_{t-1},I_t,\hat I_{t+1}$成为了input，$p_1$点在$\hat I_{t+1}$中被遮挡了，于是遮挡就被模拟了出来。这与之前AAAI的做法其实不谋而合，只不过是把被遮挡掉的区域换成了0值（crop掉了，其实也可以理解成什么值都有可能，那就是随机值了），而且用的是方形的遮挡。</p>
+<p>使用superpixel的优点也很明显，首先是superpixel的形状往往都比较随机，而且贴近物体边缘，利于对物体之间遮挡的模拟，其次就是在同一个superpixel内的物体一般是同一个物体，有同样的流场，因此也有方法用superpixel来做光流估计的。</p>
+<p><strong><em>其实可以看出这两个方法对遮挡的生成都是通过强行增加干扰来模拟的，其实这么做是有一定的道理的，遮挡物能够将被遮挡物体的部分或者所有pixel挡住，从而当前帧与前一帧之间的motion就被挡住了，无法预料了，因此对于被遮挡物的光流预测而言，遮挡物是啥并没有任何影响，反正都被挡住了，我们可以通过teacher模型生成的label以及上下文的motion信息推断出被遮挡pixel的光流。与此同时，随机干扰的好处在于泛化能力，相当于只考虑了遮挡物的形状而随机化遮挡物的纹理。</em></strong></p>
+<p>到这里做法就很清晰了，其实整个网络做法是和AAAI几乎一致的，只不过生成遮挡的方式变了而已。那么肯定还是要有O map和M map来对loss做个划分，也就是非occlusion区域的loss和模拟出来的occlusion区域的loss。occlusion区域的loss为：<br>$$<br>L_{p}=\sum_{i, j} \frac{\sum \psi\left(I_{i}-I_{j \rightarrow i}^{w}\right) \odot\left(1-O_{i}\right)}{\sum\left(1-O_{i}\right)}<br>$$<br>其中呢$\psi(x)=(|x|+\epsilon)^{q}$，是一个鲁棒的loss函数，q取的是0.4。occlusion区域的loss为：<br>$$<br>L_{o}=\sum_{i, j} \frac{\sum \psi\left(\mathbf{w}<em>{i \rightarrow j}-\widetilde{\mathbf{w}}</em>{i \rightarrow j}\right) \odot M_{i \rightarrow j}}{\sum M_{i \rightarrow j}}<br>$$<br>其中occlusion map的生成是和AAAI一样的，唉其实O map、M map以及loss函数的参数，这些东西都是一样样的，还有训练方法，三步走，也是一样的。</p>
+<h3 id="网络改进"><a href="#网络改进" class="headerlink" title="网络改进"></a>网络改进</h3><p>文章另一个contribution是引入了多帧的信息来辅助，当t+1帧上看不到t帧能看到但是在t+1帧被遮挡的信息时，可能t-1帧可以看到或者提供更多的信息，因此文章相比于AAAI不一样的地方在于，AAAI只是单纯地用了PWCNet，文章还将PWCNet拓展为用三帧作为输入得到两个光流的网络，在teacher-student模型中，当然还是只perturbate第t+1帧了。</p>
+<p>我们都知道PWCNet是一个结合了金字塔、Warp和Cost Volume的网络，是CVPR18年效果很好的光流估计网络，其网络设计如下图所示。</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/CVPR18-architecture.png" alt="CVPR18-architecture"></p>
+<p>网络将以前用的图像金字塔改成了特征金字塔，同样是用浅层传来的低分辨率光流上采样之后来warp，不过这里是warp特征金字塔中该层的特征，然后与target的特征计算cost volume，再将cost volume、target feature以及upsampled flow一起输入光流估计网络，进行flow refinement，得到该层估计的光流。</p>
+<p>文章将其修改为下图的形式：</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/CVPR1922.png" alt="CVPR19-2"></p>
+<p>可以看出文章的修改其实是把多帧放到一起去算了，同时还把来自上层的两个光流都送进了光流估计网络，增多了网络输入的信息。</p>
+<p>对于occlusion map，由于这样重新设计的网络只输出一个前向的光流，所以文章用5帧作为输入，强行得到了两个方向的光流，用他们的一致性来计算了O map，计算方式如下：</p>
+<p><img src="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/CVPR19-3.png" alt="CVPR19-3"></p>
+<h3 id="对有监督方法的益处"><a href="#对有监督方法的益处" class="headerlink" title="对有监督方法的益处"></a>对有监督方法的益处</h3><p>现有的有监督深度学习方法总是因为数据量不够，或者仿真数据和真实数据gap太大，导致结果不够好或需要特别设计的finetune方法。文章通过这种self learning的方式得到了一个能够很好地处理occlusion的student model，并且证明用它做初始化来用真实的数据集（一般比较小）来finetune，能够得到比直接在这些数据上面训练更好的结果。它不需要额外的有label的数据做pretrain，而且收敛得更快，因此是个很有用的初始化。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过这五篇文章的阅读，我对知识蒸馏、teacher-student模型有了比较初步的认识，前三篇文章主要是通过这种方法做模型压缩以及轻量化，后两个方法则是侧重于通过容易学习的东西来学习难学的东西，核心思想就是把非遮挡区域模拟成遮挡区域，从而又有遮挡又有label，皆大欢喜，使得student模型能够很好地处理occlusion区域。</p>
+<p>这篇文章的思想还是很巧妙的，引入superpixel和随机噪声的方法很大胆却也很有根据，它给我们的一个启示就是，在一些数据的label不好获取的场合，self learning是一种很不错的方式，通过学习容易获取的label或者subset，通过这些subset来模拟出不容易获取label的的情景，然后进行学习，处理难以handle的情况。</p>
+<p>当然我还有那个O和M的梯度问题，我有点想不明白这个东西到底要不要参与反传。。。</p>
 
       
     </div>
@@ -387,7 +441,7 @@
         <p><span>本文标题:</span><a href="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/">SelFlow: Self-Supervised Learning of Optical Flow-CVPR19</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Zhen Cheng</a></p>
         <p><span>发布时间:</span>2019-07-10, 17:42:50</p>
-        <p><span>最后更新:</span>2019-07-10, 22:39:02</p>
+        <p><span>最后更新:</span>2019-07-11, 22:40:17</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/" title="SelFlow: Self-Supervised Learning of Optical Flow-CVPR19">http://Joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/</a>
             <span class="copy-path" data-clipboard-text="原文: http://Joechann0831.github.io/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/　　作者: Zhen Cheng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -417,7 +471,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NIPS14-Do-Deep-Nets-Really-Need-to-be-Deep"><span class="toc-number">1.</span> <span class="toc-text">NIPS14: Do Deep Nets Really Need to be Deep?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型压缩"><span class="toc-number">1.1.</span> <span class="toc-text">模型压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深度网络-vs-浅层网络"><span class="toc-number">1.2.</span> <span class="toc-text">深度网络 vs. 浅层网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mimic-model可以防止过拟合"><span class="toc-number">1.3.</span> <span class="toc-text">Mimic model可以防止过拟合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SIGKDD06-Model-Compression"><span class="toc-number">2.</span> <span class="toc-text">SIGKDD06: Model Compression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-compression"><span class="toc-number">2.1.</span> <span class="toc-text">Model compression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据生成"><span class="toc-number">2.2.</span> <span class="toc-text">数据生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结-1"><span class="toc-number">2.3.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIPS15-Distilling-the-Knowledge-in-a-Neural-Network"><span class="toc-number">3.</span> <span class="toc-text">NIPS15: Distilling the Knowledge in a Neural Network</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NIPS14-Do-Deep-Nets-Really-Need-to-be-Deep"><span class="toc-number">1.</span> <span class="toc-text">NIPS14: Do Deep Nets Really Need to be Deep?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型压缩"><span class="toc-number">1.1.</span> <span class="toc-text">模型压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深度网络-vs-浅层网络"><span class="toc-number">1.2.</span> <span class="toc-text">深度网络 vs. 浅层网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mimic-model可以防止过拟合"><span class="toc-number">1.3.</span> <span class="toc-text">Mimic model可以防止过拟合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.4.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SIGKDD06-Model-Compression"><span class="toc-number">2.</span> <span class="toc-text">SIGKDD06: Model Compression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model-compression"><span class="toc-number">2.1.</span> <span class="toc-text">Model compression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据生成"><span class="toc-number">2.2.</span> <span class="toc-text">数据生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结-1"><span class="toc-number">2.3.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIPS15-Distilling-the-Knowledge-in-a-Neural-Network"><span class="toc-number">3.</span> <span class="toc-text">NIPS15: Distilling the Knowledge in a Neural Network</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Knowledge-distilling"><span class="toc-number">3.1.</span> <span class="toc-text">Knowledge distilling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MNIST上的实验"><span class="toc-number">3.2.</span> <span class="toc-text">MNIST上的实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结-2"><span class="toc-number">3.3.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AAAI-19-DDFlow-Learning-Optical-Flow-with-Unlabeled-Data-Distillation"><span class="toc-number">4.</span> <span class="toc-text">AAAI 19: DDFlow: Learning Optical Flow with Unlabeled Data Distillation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于数据蒸馏的光流估计"><span class="toc-number">4.1.</span> <span class="toc-text">基于数据蒸馏的光流估计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#训练过程"><span class="toc-number">4.2.</span> <span class="toc-text">训练过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结-3"><span class="toc-number">4.3.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CVPR19-SelFlow-Self-Supervised-Learning-of-Optical-Flow"><span class="toc-number">5.</span> <span class="toc-text">CVPR19: SelFlow: Self-Supervised Learning of Optical Flow</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Self-supervision-NOC-to-OCC"><span class="toc-number">5.1.</span> <span class="toc-text">Self supervision: NOC to OCC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络改进"><span class="toc-number">5.2.</span> <span class="toc-text">网络改进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对有监督方法的益处"><span class="toc-number">5.3.</span> <span class="toc-text">对有监督方法的益处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
         
     </div>
     <style>
