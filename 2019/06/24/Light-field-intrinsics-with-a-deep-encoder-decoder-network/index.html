@@ -2,7 +2,7 @@
 <html lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
 
-    <!--[if lt IE 9]>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lt IE 9]>
         <style>body {display: none; background: none !important} </style>
         <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
     <![endif]-->
@@ -89,7 +89,7 @@
 
 
 
-    <script> yiliaConfig.rootUrl = "\/";</script>
+    <script> yiliaConfig.rootUrl = "\/";</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -98,7 +98,7 @@
 
 </head></html>
 <body>
-  <div id="container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div class="left-col">
     <div class="overlay"></div>
 <div class="intrude-less">
@@ -322,8 +322,8 @@
         <p><img src="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/1.png" alt="1"></p>
 <p>这是承接上一篇文章读的，<a href="http://Joechann0831.github.io/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/">上一篇文章</a>是CVPRW19的利用3D的encoder-decoder加上GAN loss做SR的工作，它的结构其实比较奇怪，最后加上GAN loss的操作也有点莫名其妙，这篇CVPR18正会的文章就好多了。</p>
 <a id="more"></a>
-
-<h3 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h3><p>文章的主要思想其实靠一张图就能看明白了，这也是我之前一直没有读这篇文章的原因，觉得看完图就懂了:</p>
+<h3 id="主要思想"><a class="markdownIt-Anchor" href="#主要思想"></a> 主要思想</h3>
+<p>文章的主要思想其实靠一张图就能看明白了，这也是我之前一直没有读这篇文章的原因，觉得看完图就懂了:</p>
 <p><img src="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/Framework.png" alt="Framework"></p>
 <p>EPI volume通过一个encoder编码到非常低维的空间，然后通过无监督方式训练AE得到表达、通过有监督的训练方式来得到disparity和intrinsic的两个分量。</p>
 <p>一些小细节：</p>
@@ -331,9 +331,11 @@
 <li>输入是水平和垂直两个方向的EPI volume，共享网络参数，在disparity encoder之前concat在一起；</li>
 <li>由于diffuse和specular相加是要等于LF的，所以在最后接近输出层时把二者的feature共享了；</li>
 </ol>
-<h3 id="Residual-block的设计"><a href="#Residual-block的设计" class="headerlink" title="Residual block的设计"></a>Residual block的设计</h3><p>文章还提出了它设计的encoder-decoder的res-block，与CVPRW19的是一样的结构，只不过deconv那里没有bicubic上采样这么神奇的操作而已：</p>
+<h3 id="residual-block的设计"><a class="markdownIt-Anchor" href="#residual-block的设计"></a> Residual block的设计</h3>
+<p>文章还提出了它设计的encoder-decoder的res-block，与CVPRW19的是一样的结构，只不过deconv那里没有bicubic上采样这么神奇的操作而已：</p>
 <p><img src="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/Res-block.png" alt="Res-block"></p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>总的来说，CVPRW19的文章结构上是沿袭了这篇18年的思想，只不过为什么用3D-2D这样的结构代替3D-3D的结构还是有点奇怪，如果单纯是为了结构上比较精简，倒也可以理解了。那么还有两个不太理解的地方就是，为什么要用GAN的loss，如果改用MSE loss比较PSNR和SSIM是否会更合理一些？</p>
+<h3 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h3>
+<p>总的来说，CVPRW19的文章结构上是沿袭了这篇18年的思想，只不过为什么用3D-2D这样的结构代替3D-3D的结构还是有点奇怪，如果单纯是为了结构上比较精简，倒也可以理解了。那么还有两个不太理解的地方就是，为什么要用GAN的loss，如果改用MSE loss比较PSNR和SSIM是否会更合理一些？</p>
 
       
     </div>
@@ -381,7 +383,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要思想"><span class="toc-number">1.</span> <span class="toc-text">主要思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Residual-block的设计"><span class="toc-number">2.</span> <span class="toc-text">Residual block的设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text">小结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主要思想"><span class="toc-number">1.</span> <span class="toc-text"> 主要思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#residual-block的设计"><span class="toc-number">2.</span> <span class="toc-text"> Residual block的设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text"> 小结</span></a></li></ol>
         
     </div>
     <style>
@@ -546,27 +548,6 @@ ga('send', 'pageview');
 
 
 
-    <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
 <div class="scroll" id="scroll">
     <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
     <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
@@ -596,6 +577,6 @@ MathJax.Hub.Queue(function() {
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-  </div>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

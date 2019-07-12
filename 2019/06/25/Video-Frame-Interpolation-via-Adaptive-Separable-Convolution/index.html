@@ -2,7 +2,7 @@
 <html lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
 
-    <!--[if lt IE 9]>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lt IE 9]>
         <style>body {display: none; background: none !important} </style>
         <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
     <![endif]-->
@@ -88,7 +88,7 @@
 
 
 
-    <script> yiliaConfig.rootUrl = "\/";</script>
+    <script> yiliaConfig.rootUrl = "\/";</script><!-- hexo-inject:begin --><link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css'><!-- hexo-inject:end -->
 
 
 
@@ -97,7 +97,7 @@
 
 </head></html>
 <body>
-  <div id="container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div class="left-col">
     <div class="overlay"></div>
 <div class="intrude-less">
@@ -321,11 +321,11 @@
         <p><img src="/2019/06/25/Video-Frame-Interpolation-via-Adaptive-Separable-Convolution/title.png" alt="title"></p>
 <p>这篇是ICCV17的文章，是前一篇CVPR17的增强版，title也只比前作多了一个词，tql。</p>
 <a id="more"></a>
-
-<p>这篇文章解决了前一个文章没能解决的问题，因为2D的kernel size必须很大才能处理大的motion，所以无法在这种大size的kernel下直接预测全图per-pixel的kernel，只能pixel by pixel地预测，这就导致了算法的复杂以及最后结果无法加上全图的loss等问题。因此文章提出用1D的kernel来代替2D的kernel，将kernel的复杂度从$K^2$变成$2K$，进而可以实现全图的输出。</p>
+<p>这篇文章解决了前一个文章没能解决的问题，因为2D的kernel size必须很大才能处理大的motion，所以无法在这种大size的kernel下直接预测全图per-pixel的kernel，只能pixel by pixel地预测，这就导致了算法的复杂以及最后结果无法加上全图的loss等问题。因此文章提出用1D的kernel来代替2D的kernel，将kernel的复杂度从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>K</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">K^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>变成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>K</mi></mrow><annotation encoding="application/x-tex">2K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span></span></span></span>，进而可以实现全图的输出。</p>
 <p><img src="/2019/06/25/Video-Frame-Interpolation-via-Adaptive-Separable-Convolution/architecture.png" alt="architecture"></p>
 <p>输出的1D的kernel有两个，一个是horizontal的，一个是vertical的，二者进行外积即可得到一个完整的2D kernel，这种情况下，kernel size可以进一步设大，增强网络对大motion的处理能力。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>这篇文章就更接近前面两篇KPN的方法了，都是用一个类似于AE的结构生成全图的per-pixel的kernel来做卷积，不同的是这里为了减少存储量，把2D kernel分解成了两个1D的，还是有点意思的。</p>
+<h3 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h3>
+<p>这篇文章就更接近前面两篇KPN的方法了，都是用一个类似于AE的结构生成全图的per-pixel的kernel来做卷积，不同的是这里为了减少存储量，把2D kernel分解成了两个1D的，还是有点意思的。</p>
 
       
     </div>
@@ -373,7 +373,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.</span> <span class="toc-text">小结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">1.</span> <span class="toc-text"> 小结</span></a></li></ol>
         
     </div>
     <style>
@@ -538,27 +538,6 @@ ga('send', 'pageview');
 
 
 
-    <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
 <div class="scroll" id="scroll">
     <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
     <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
@@ -588,6 +567,6 @@ MathJax.Hub.Queue(function() {
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-  </div>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

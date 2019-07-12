@@ -2,7 +2,7 @@
 <html lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
 
-    <!--[if lt IE 9]>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lt IE 9]>
         <style>body {display: none; background: none !important} </style>
         <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
     <![endif]-->
@@ -16,7 +16,7 @@
 
 
 <meta name="description" content="这是19年CVPR NTIRE Workshop上的文章，也是做光场超分辨率的，而且还是第一次见到用生成对抗的loss来做光场的SR，应该挺有意思的。">
-<meta name="keywords" content="light field,super resolution">
+<meta name="keywords" content="super resolution,light field">
 <meta property="og:type" content="article">
 <meta property="og:title" content="An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution">
 <meta property="og:url" content="http://Joechann0831.github.io/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/index.html">
@@ -89,7 +89,7 @@
 
 
 
-    <script> yiliaConfig.rootUrl = "\/";</script>
+    <script> yiliaConfig.rootUrl = "\/";</script><!-- hexo-inject:begin --><link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css'><!-- hexo-inject:end -->
 
 
 
@@ -98,7 +98,7 @@
 
 </head></html>
 <body>
-  <div id="container">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
     <div class="left-col">
     <div class="overlay"></div>
 <div class="intrude-less">
@@ -322,10 +322,9 @@
         <p><img src="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/1.png" alt="1"></p>
 <p>这是19年CVPR NTIRE Workshop上的文章，也是做光场超分辨率的，而且还是第一次见到用生成对抗的loss来做光场的SR，应该挺有意思的。</p>
 <a id="more"></a>
-
 <p>看完之后，先讲讲优点吧。首先我觉得处理的问题是比较有创新性的，在给定非常少的view的情况下，能够同时做角度和空间的恢复，用到了3D的基于GAN的AE，见下图：</p>
 <p><img src="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/2.png" alt="2"></p>
-<p>输入是三个图中红色或者绿色框标记的view，经过一个3D的encoder得到一个$3\times 3\times 3$的latent表达，再经过9个2D的decoder，出来九个通道的角度SR结果，然后再经过两个(for 4x)或者一个(for 2x)空间超分辨率的网络，做到角度和空间上的超分辨率，最后用一个DiffWGAN的discriminator做判别器。</p>
+<p>输入是三个图中红色或者绿色框标记的view，经过一个3D的encoder得到一个<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">3\times 3\times 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>的latent表达，再经过9个2D的decoder，出来九个通道的角度SR结果，然后再经过两个(for 4x)或者一个(for 2x)空间超分辨率的网络，做到角度和空间上的超分辨率，最后用一个DiffWGAN的discriminator做判别器。</p>
 <p>但是这里我有几个小疑问：</p>
 <ol>
 <li>为什么不用3D的encoder-decoder直接出来结果，而要用这种方式？节约解码端的计算资源？</li>
@@ -548,27 +547,6 @@ ga('send', 'pageview');
 
 
 
-    <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';                 
-    }       
-});
-</script>
-
-<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
 <div class="scroll" id="scroll">
     <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
     <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
@@ -598,6 +576,6 @@ MathJax.Hub.Queue(function() {
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-  </div>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
