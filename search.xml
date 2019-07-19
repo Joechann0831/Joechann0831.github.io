@@ -153,9 +153,9 @@
       
         <tags>
             
-            <tag> video </tag>
-            
             <tag> super resolution </tag>
+            
+            <tag> video </tag>
             
             <tag> dynamic filter network </tag>
             
@@ -238,9 +238,9 @@
             
             <tag> super resolution </tag>
             
-            <tag> real-world SISR </tag>
-            
             <tag> kernel prediction networks </tag>
+            
+            <tag> real-world SISR </tag>
             
         </tags>
       
@@ -265,9 +265,9 @@
       
         <tags>
             
-            <tag> kernel prediction networks </tag>
-            
             <tag> denoising </tag>
+            
+            <tag> kernel prediction networks </tag>
             
         </tags>
       
@@ -321,9 +321,9 @@
       
         <tags>
             
-            <tag> super resolution </tag>
-            
             <tag> light field </tag>
+            
+            <tag> super resolution </tag>
             
         </tags>
       
@@ -348,9 +348,9 @@
       
         <tags>
             
-            <tag> super resolution </tag>
-            
             <tag> light field </tag>
+            
+            <tag> super resolution </tag>
             
         </tags>
       
