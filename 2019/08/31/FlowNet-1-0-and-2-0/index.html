@@ -15,16 +15,20 @@
 
 
 
-<meta name="description" content="Here is Zhen&apos;s personal blog.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zhen&#39;s blog">
-<meta property="og:url" content="http://Joechann0831.github.io/categories/Notes/page/2/index.html">
+<meta name="description" content="这两天读到了FlowNet1.0与2.0这两篇文章，算是用CNN来估计optical flow的经典文章，因此拜读一番，体会一下前辈的真意。">
+<meta name="keywords" content="optical flow,video processing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FlowNet 1.0 and 2.0">
+<meta property="og:url" content="http://Joechann0831.github.io/2019/08/31/FlowNet-1-0-and-2-0/index.html">
 <meta property="og:site_name" content="Zhen&#39;s blog">
-<meta property="og:description" content="Here is Zhen&apos;s personal blog.">
+<meta property="og:description" content="这两天读到了FlowNet1.0与2.0这两篇文章，算是用CNN来估计optical flow的经典文章，因此拜读一番，体会一下前辈的真意。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://joechann0831.github.io/2019/08/31/FlowNet-1-0-and-2-0/FlowNet1.png">
+<meta property="og:updated_time" content="2019-09-03T03:15:28.770Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhen&#39;s blog">
-<meta name="twitter:description" content="Here is Zhen&apos;s personal blog.">
+<meta name="twitter:title" content="FlowNet 1.0 and 2.0">
+<meta name="twitter:description" content="这两天读到了FlowNet1.0与2.0这两篇文章，算是用CNN来估计optical flow的经典文章，因此拜读一番，体会一下前辈的真意。">
+<meta name="twitter:image" content="http://joechann0831.github.io/2019/08/31/FlowNet-1-0-and-2-0/FlowNet1.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -56,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Category: Notes | Zhen&#39;s blog</title>
+<title>FlowNet 1.0 and 2.0 | Zhen&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -66,10 +70,10 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
         isTag: false,
-        isCategory: true,
+        isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
         search: true
@@ -273,175 +277,198 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-FlowNet-1-0-and-2-0" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2019/08/31/FlowNet-1-0-and-2-0/" class="article-date">
+      <time datetime="2019-08-31T13:18:04.000Z" itemprop="datePublished">2019-08-31</time>
+</a>
+
+
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      FlowNet 1.0 and 2.0
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Notes/">Notes</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/optical-flow/">optical flow</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/video-processing/">video processing</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/" class="archive-article-date">
-      <time datetime="2019-06-24T03:26:50.000Z" itemprop="datePublished">06-24</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/">Light field intrinsics with a deep encoder-decoder network</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Notes/">Notes</a>
+        <p>这两天读到了FlowNet1.0与2.0这两篇文章，算是用CNN来估计optical flow的经典文章，因此拜读一番，体会一下前辈的真意。</p>
+<p><img src="/2019/08/31/FlowNet-1-0-and-2-0/FlowNet1.png" alt="FlowNet1"></p>
+<a id="more"></a>
+<h2 id="flownet-10-learning-optical-flow-with-cnns"><a class="markdownIt-Anchor" href="#flownet-10-learning-optical-flow-with-cnns"></a> FlowNet 1.0: Learning optical flow with CNNs</h2>
+<p>FlowNet1.0是比较早的文章了，ICCV2015的paper，其主要网络架构有两个，一个是FlowNetSimple，一个简单的encoder-decoder结构，另一个是FlowNetCorr，先对每帧提取feature，然后利用一个correlation layer来获取两帧的feature之间的相关性，这个layer在后面的很多方法中，包括去年比较有名的contextual attention都有影子。具体做法就很简单了，其实就是把patch similarity的计算利用卷积来实现，但是因为结果值是4维的，计算量很大，因此文章采用了局部patch计算的方式，减缓复杂度。</p>
+<p>具体而言就是，原本的版本中，对x1中的一个patch，计算x2中所有的patch与它的相似度，而改进的版本中，对x1中的一个patch，计算x2中边长为D的square之内的所有patch与它的相似度，这样的话复杂度就变小了很多，也能够提取到比较好用的correlation feature。</p>
+<p>但是这样的话，D的大小就得控制好了，因为一定要超过Flow的最大值。</p>
+<p>实验结果表明，FlowNetSimple相对于FlowNetCorr能够更好地泛化，而且FlowNetCorr在大的motion情况下会有一些问题。（当然这些点后来被FlowNet2给推翻了）</p>
+<h2 id="flownet-20-evolution-of-optical-flow-estimation-with-deep-networks"><a class="markdownIt-Anchor" href="#flownet-20-evolution-of-optical-flow-estimation-with-deep-networks"></a> FlowNet 2.0: Evolution of optical flow estimation with deep networks</h2>
+<p>FlowNet2.0首先提到FlowNet1.0没有将FlowNetC和FlowNetS在同等条件下做对比实验，所以得出来的孰优孰劣不够准确。</p>
+<p>这篇文章在FlowNet的基础上提出了三个点，其一是training data的训练策略，其二是提出了stacked architecture，其三是提出了一个子网络，focus在small displacement上，二三两点通过逐级优化和correlation的方式提升了flow estimation的性能。二三两点其实就是网络的堆叠+warp之后的consistency loss，是现在看来比较常规的操作了，文章做了不少实验去选择不同形式堆叠的网络结构。</p>
+<p>关于第一点，主要是提到了在训练数据不是很够的情况下，或者说不同训练数据复杂度不同时（例如真实数据和合成数据），训练数据的顺序也很重要，我的理解是先在通用而简单一点的数据集上学习通用的模型，然后再在复杂的数据集上学习更加复杂的特性，类似于coarse-to-fine的操作。</p>
+<h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2>
+<p>FlowNet系列是比较早的文章了，其中的思想都比较经典吧，虽然不一定是最早提出的，例如correlation layer、learning schedule等。</p>
+
+      
     </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/depth-estimation/">depth estimation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/intrinsic-decomposition/">intrinsic decomposition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/light-field/">light field</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/" class="archive-article-date">
-      <time datetime="2019-06-19T12:58:28.000Z" itemprop="datePublished">06-19</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/">An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Notes/">Notes</a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/08/31/FlowNet-1-0-and-2-0/">FlowNet 1.0 and 2.0</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Zhen Cheng</a></p>
+        <p><span>发布时间:</span>2019-08-31, 21:18:04</p>
+        <p><span>最后更新:</span>2019-09-03, 11:15:28</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/08/31/FlowNet-1-0-and-2-0/" title="FlowNet 1.0 and 2.0">http://Joechann0831.github.io/2019/08/31/FlowNet-1-0-and-2-0/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://Joechann0831.github.io/2019/08/31/FlowNet-1-0-and-2-0/　　作者: Zhen Cheng" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/light-field/">light field</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/super-resolution/">super resolution</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/" class="archive-article-date">
-      <time datetime="2019-06-18T13:19:41.000Z" itemprop="datePublished">06-18</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/">Residual Networks for Light Field Image Super-Resolution</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Notes/">Notes</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/light-field/">light field</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/super-resolution/">super resolution</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/" class="archive-article-date">
-      <time datetime="2019-06-16T13:53:47.000Z" itemprop="datePublished">06-16</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Notes/">Notes</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/depth-estimation/">depth estimation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/light-field/">light field</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/categories/Notes/">&laquo; Prev</a><a class="page-number" href="/categories/Notes/">1</a><span class="page-number current">2</span>
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/08/26/Google-scholar推送概览/">
+                    Google scholar推送概览
+                </a>
+            </div>
+        
     </nav>
-  
 
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#flownet-10-learning-optical-flow-with-cnns"><span class="toc-number">1.</span> <span class="toc-text"> FlowNet 1.0: Learning optical flow with CNNs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flownet-20-evolution-of-optical-flow-estimation-with-deep-networks"><span class="toc-number">2.</span> <span class="toc-text"> FlowNet 2.0: Evolution of optical flow estimation with deep networks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">3.</span> <span class="toc-text"> 小结</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"FlowNet 1.0 and 2.0　| Zhen's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments" style="margin: 2em; padding: 2em; background: rgba(255, 255, 255, 0.5)">
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '185312dab9e8351756b5',
+      clientSecret: '93c807c1c7089a98ca29a343f4d2991e7b517f23',
+      repo: 'Joechann0831.github.io',
+      owner: 'Joechann0831',
+      admin: ['Joechann0831'],
+      id: 'Sat Aug 31 2019 21:18:04 GMT+0800'
+    })
+    gitalk.render('gitalk-container')
+  </script>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/08/26/Google-scholar推送概览/" title="下一篇: Google scholar推送概览">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/08/31/FlowNet-1-0-and-2-0/">FlowNet 1.0 and 2.0</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/26/Google-scholar推送概览/">Google scholar推送概览</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/15/Hexo-Yelee主题首页部分文章摘要无法显示/">Hexo Yelee主题首页部分文章摘要无法显示</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/15/Neural-RGB-D-Sensing-Depth-and-Uncertainty-from-a-Video-Camera/">Neural RGB-D Sensing: Depth and Uncertainty from a Video Camera</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/14/ODE-inspired-Network-Design-for-Single-Image-Super-Resolution/">ODE-inspired Network Design for Single Image Super-Resolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/12/hexo中部分公式无法显示的问题/">hexo yelee主题中部分公式无法显示的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/10/SelFlow-Self-Supervised-Learning-of-Optical-Flow-CVPR19/">SelFlow: Self-Supervised Learning of Optical Flow-CVPR19</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/26/Deep-Video-Super-Resolution-Network-Using-Dynamic-Upsampling-Filters-Without-Explicit-Motion-Compensation/">Deep Video Super-Resolution Network Using Dynamic Upsampling Filters Without Explicit Motion Compensation</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/25/Video-Frame-Interpolation-via-Adaptive-Separable-Convolution/">Video Frame Interpolation via Adaptive Separable Convolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/25/Video-Frame-Interpolation-via-Adaptive-Convolution/">Video Frame Interpolation via Adaptive Convolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/25/Toward-Real-World-Single-Image-Super-Resolution-A-New-Benchmark-and-A-New-Model/">Toward Real-World Single Image Super-Resolution: A New Benchmark and A New Model</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/24/Burst-Denoising-with-Kernel-Prediction-Networks/">Burst Denoising with Kernel Prediction Networks</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/24/Light-field-intrinsics-with-a-deep-encoder-decoder-network/">Light field intrinsics with a deep encoder-decoder network</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/19/An-Epipolar-Volume-Autoencoder-with-Adversarial-Loss-for-Deep-Light-Field-Super-Resolution/">An Epipolar Volume Autoencoder with Adversarial Loss for Deep Light Field Super-Resolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/18/Residual-Networks-for-Light-Field-Image-Super-Resolution/">Residual Networks for Light Field Image Super-Resolution</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/16/EPINet-A-Fully-Convolutional-Neural-Network-Using-Epipolar-Geometry-for-Depth-from-Light-Field-Images/">EPINet: A Fully Convolutional Neural Network Using Epipolar Geometry for Depth from Light Field Images</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/15/博客搭建日志/">博客搭建日志</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
